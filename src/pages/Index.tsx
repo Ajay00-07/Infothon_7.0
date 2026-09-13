@@ -30,7 +30,7 @@ const Index = () => {
           <div
             className="absolute inset-0 opacity-[0.03]"
             style={{
-              backgroundImage: `linear-gradient(hsl(48 100% 50%) 1px, transparent 1px), linear-gradient(90deg, hsl(48 100% 50%) 1px, transparent 1px)`,
+              backgroundImage: `linear-gradient(hsl(91 100% 50%) 1px, transparent 1px), linear-gradient(90deg, hsl(91 100% 50%) 1px, transparent 1px)`,
               backgroundSize: "60px 60px",
             }}
           />
@@ -44,14 +44,18 @@ const Index = () => {
           >
             Presenting
           </motion.p>
-          <motion.h1
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="font-display text-5xl md:text-7xl lg:text-8xl font-black text-primary neon-text mb-6"
+            className="mb-6 flex justify-center"
           >
-            INFOTHON 7.0
-          </motion.h1>
+            <img
+              src="/logo.png"
+              alt="INFOTHON 7.0"
+              className="h-28 md:h-36 lg:h-44 w-auto object-contain rounded-2xl md:rounded-3xl border border-primary/20 drop-shadow-[0_0_30px_hsl(91_100%_50%/0.7)]"
+            />
+          </motion.div>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -100,7 +104,7 @@ const Index = () => {
             {[
               { icon: Clock,  title: "10 hours",    desc: "Non-stop innovation and coding marathon" },
               { icon: Users,  title: "Open to All", desc: "Students and enthusiasts welcome" },
-              { icon: Trophy, title: "Coming Soon", desc: "Prize pool with exciting goodies and swag" },
+              { icon: Trophy, title: "₹40,000",     desc: "Prize pool with exciting goodies and swag" },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -123,10 +127,10 @@ const Index = () => {
           <SectionHeading title="Timeline" subtitle="Key milestones for Infothon 7.0" />
           <div className="max-w-3xl mx-auto space-y-0">
             {[
-              { icon: Calendar,    date: "March 28th",              title: "Registration Ends", desc: "Sign up and form your team" },
-              { icon: Send,        date: "March 29th – April 1st",  title: "PPT Submission",    desc: "Submit your solution approach" },
-              { icon: Zap,         date: "April 11th and 12th",     title: "Hackathon Day",     desc: "10 hours of building and hacking" },
-              { icon: CheckCircle, date: "April 12th",              title: "Results Announced", desc: "Winners declared and prizes distributed" },
+              { icon: Calendar,    date: "11th October", title: "Registration & PPT Deadline",            desc: "Sign up and submit your solution approach" },
+              { icon: Send,        date: "14th October", title: "Shortlist Announcement",                desc: "Announcement of shortlisted teams" },
+              { icon: Zap,         date: "18th October", title: "Payment Deadline for Shortlisted Teams", desc: "Confirm participation and payment" },
+              { icon: CheckCircle, date: "24th October", title: "Offline Hackathon",                     desc: "10 hours of building and hacking" },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -321,10 +325,10 @@ const Index = () => {
       {...fadeUp}
       className="flex justify-center items-center"
     >
-<div className="rounded-3xl overflow-hidden border-2 border-primary/50 hover:border-primary hover:shadow-[0_0_40px_hsl(48_100%_50%_/_0.3)] transition-all duration-500 flex items-center justify-center bg-white/95">
+<div className="rounded-3xl overflow-hidden border-2 border-primary/50 hover:border-primary hover:shadow-[0_0_40px_hsl(91_100%_50%_/_0.3)] transition-all duration-500 flex items-center justify-center bg-white/95 p-4">
         <img
-          src="/677.png"
-          alt="Infothon 7.0 Sponsors"
+          src="/sponsors.jpg"
+          alt="Infothon 7.0 Sponsors - ISTE & IEI"
           className="max-w-xl w-full object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
         />
       </div>

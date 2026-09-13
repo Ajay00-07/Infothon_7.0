@@ -7,6 +7,8 @@ const navLinks = [
   { to: "/", label: "Home" },
   { to: "/problems", label: "Problems" },
   { to: "/about", label: "About" },
+  { to: "/contributors", label: "Contributors" },
+  { to: "/sponsors", label: "Sponsors" },
   { to: "/contact", label: "Contact" },
 ];
 
@@ -31,26 +33,19 @@ const Navbar = () => {
     >
       <div className="w-full flex items-center justify-between h-20 px-5 md:px-14">
 
-        {/* Text logo — visible on ALL screen sizes */}
+        {/* Logo — visible on ALL screen sizes */}
         <div className="flex items-center gap-3 flex-shrink-0">
-          <Link to="/">
-            <div className="flex flex-col leading-tight">
-              <span className="text-primary font-bold text-sm tracking-[0.2em] uppercase neon-text">
-                Infothon
-              </span>
-              <span className="text-foreground/40 text-[10px] tracking-[0.3em] uppercase">
-                7.0
-              </span>
-            </div>
+          <Link to="/" className="flex items-center gap-2">
+            <img
+              src="/logo.png"
+              alt="Infothon 7.0 Logo"
+              className="h-10 w-auto object-contain rounded-lg border border-primary/20 drop-shadow-[0_0_12px_hsl(91_100%_50%/0.7)]"
+            />
           </Link>
           <div className="w-px h-7 bg-white/20" />
-          <img src="/34.png" alt="Unstop" className="h-12 w-auto opacity-90 rounded" />
-        </div>
-        
-        {/* Text logo — visible on ALL screen sizes */}
-        <div className="flex items-center gap-3 flex-shrink-0">
+          <img src="/34.png" alt="VVCE" className="h-10 w-auto opacity-90 rounded object-contain" />
           <div className="w-px h-7 bg-white/20" />
-          <img src="/23.png" alt="Unstop" className="h-12 w-auto opacity-90 rounded" />
+          <img src="/23.png" alt="ISE" className="h-10 w-auto opacity-90 rounded object-contain" />
         </div>
 
 
@@ -68,7 +63,7 @@ const Navbar = () => {
                 {isActive && (
                   <motion.div
                     layoutId="nav-underline"
-                    className="absolute bottom-0 left-4 right-4 h-[2px] bg-primary rounded-full shadow-[0_0_8px_hsl(48_100%_50%/0.8)]"
+                    className="absolute bottom-0 left-4 right-4 h-[2px] bg-primary rounded-full shadow-[0_0_8px_hsl(91_100%_50%/0.8)]"
                   />
                 )}
                 {!isActive && (
@@ -79,7 +74,7 @@ const Navbar = () => {
           })}
           <Link
             to="/register"
-            className="ml-4 px-5 py-2 rounded-full text-xs font-bold tracking-[0.15em] uppercase text-background gradient-primary shadow-[0_0_16px_hsl(48_100%_50%/0.4)] hover:shadow-[0_0_28px_hsl(48_100%_50%/0.7)] transition-all duration-300 hover:scale-105"
+            className="ml-4 px-5 py-2 rounded-full text-xs font-bold tracking-[0.15em] uppercase text-background gradient-primary shadow-[0_0_16px_hsl(91_100%_50%/0.4)] hover:shadow-[0_0_28px_hsl(91_100%_50%/0.7)] transition-all duration-300 hover:scale-105"
           >
             Register
           </Link>
@@ -128,7 +123,7 @@ const Navbar = () => {
                     }`}
                   >
                     {isActive && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_hsl(48_100%_50%)]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_hsl(91_100%_50%)]" />
                     )}
                     {link.label}
                   </Link>
@@ -137,7 +132,7 @@ const Navbar = () => {
               <Link
                 to="/register"
                 onClick={() => setOpen(false)}
-                className="mt-4 text-center py-3 rounded-full text-sm font-bold tracking-widest uppercase text-background gradient-primary shadow-[0_0_16px_hsl(48_100%_50%/0.4)]"
+                className="mt-4 text-center py-3 rounded-full text-sm font-bold tracking-widest uppercase text-background gradient-primary shadow-[0_0_16px_hsl(91_100%_50%/0.4)]"
               >
                 Register
               </Link>

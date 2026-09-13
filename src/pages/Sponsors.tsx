@@ -54,6 +54,20 @@ const Sponsors = () => (
         ))}
       </div>
 
+      {/* Current Sponsors Banner */}
+      <div className="mb-24">
+        <SectionHeading title="Our Sponsors & Partners" subtitle="Proudly supported by" />
+        <motion.div {...stagger} className="flex justify-center items-center">
+          <div className="rounded-3xl overflow-hidden border-2 border-primary/50 hover:border-primary hover:shadow-[0_0_40px_hsl(91_100%_50%_/_0.3)] transition-all duration-500 flex items-center justify-center bg-white/95 p-4 max-w-xl mx-auto">
+            <img
+              src="/sponsors.jpg"
+              alt="Infothon 7.0 Sponsors - ISTE & IEI"
+              className="w-full object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
+            />
+          </div>
+        </motion.div>
+      </div>
+
       {/* Tiers */}
       <SectionHeading title="Sponsor Tiers" />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-24">

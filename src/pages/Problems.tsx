@@ -73,7 +73,7 @@ const sdgProblems = [
   { id: "S27", title: "Ocean Plastic Pollution Tracking System", problem: "Marine plastic waste is difficult to monitor and address at scale.", objectives: ["Analyze satellite and ocean current datasets","Detect plastic accumulation zones","Predict pollution spread patterns","Recommend targeted cleanup strategies"], icon: Droplets, sihSource: "" },
 ];
 
-type Problem = { id: string; title: string; problem: string; objectives: string[]; icon: any; theme: string; sihSource: string; };
+type Problem = { id: string; title: string; problem: string; objectives: string[]; icon: React.ElementType; theme: string; sihSource: string; };
 
 const THEMES = [
   { key: "all",     label: "All" },

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Github, Twitter, Linkedin, Instagram, Mail } from "lucide-react";
+import { Linkedin, Instagram } from "lucide-react";
 
 const Footer = () => (
   <footer className="border-t border-border bg-card/50">
@@ -8,9 +8,11 @@ const Footer = () => (
 
         {/* Logo + Description */}
         <div>
-          <h3 className="font-display text-primary text-lg mb-4 neon-text">
-            INFOTHON 7.0
-          </h3>
+          <img
+            src="/logo.png"
+            alt="INFOTHON 7.0"
+            className="h-10 w-auto object-contain rounded-lg border border-primary/20 mb-4 drop-shadow-[0_0_12px_hsl(91_100%_50%/0.7)]"
+          />
           <p className="text-muted-foreground text-sm leading-relaxed">
             Innovate. Build. Disrupt. The premier hackathon pushing the boundaries of technology.
           </p>
@@ -24,8 +26,9 @@ const Footer = () => (
           <div className="flex flex-col gap-2">
             {[
               { to: "/problems", label: "Problem Statements" },
-              ,
               { to: "/about", label: "About Us" },
+              { to: "/contributors", label: "Contributors" },
+              { to: "/sponsors", label: "Sponsors" },
               { to: "/contact", label: "Contact" },
             ].map((l) => (
               <Link
@@ -51,11 +54,10 @@ const Footer = () => (
             >
               infothon@vvce.ac.in
             </a>
-            <span>Akash Valmiki - +91 70197 26776</span>
-            <span>Sanjana R - +91 94822 02925</span>
-            <span>Priyadarshani Sarja - +91 73382 84610</span>
-            <span>Preetham SM - +91 99869 86026</span>
-             <span>Sreevathsa R -+91 6364418866</span>
+            <a href="tel:6361203438" className="hover:text-primary transition-colors">Sukrutha K - +91 63612 03438</a>
+            <a href="tel:8123099737" className="hover:text-primary transition-colors">Vasudev S - +91 81230 99737</a>
+            <a href="tel:8660164565" className="hover:text-primary transition-colors">Ajay Kumar R - +91 86601 64565</a>
+            <a href="tel:9481138912" className="hover:text-primary transition-colors">Abhinav C - +91 94811 38912</a>
           </div>
         </div>
 
@@ -67,10 +69,8 @@ const Footer = () => (
 
           <div className="flex gap-3">
             {[
-             
               { icon: Linkedin, link: "https://www.linkedin.com/school/vvceofficial/" },
               { icon: Instagram, link: "https://www.instagram.com/infothon.vvce/" },
-              
             ].map(({ icon: Icon, link }, i) => (
               <a
                 key={i}

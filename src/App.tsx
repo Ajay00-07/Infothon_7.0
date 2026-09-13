@@ -13,6 +13,7 @@ import Contact from "./pages/Contact";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import Results from "./pages/Results";
+import Contributors from "./pages/Contributors";
 
 const queryClient = new QueryClient();
 
@@ -27,12 +28,13 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/problems" element={<Problems />} />
-          <Route path="/sponsors" element={<Sponsors />} />
           <Route path="/about" element={<About />} />
+          <Route path="/contributors" element={<Contributors />} />
+          <Route path="/sponsors" element={<Sponsors />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/register" element={<Register />} />
-          <Route path="*" element={<NotFound />} />
           <Route path="/results" element={<Results />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

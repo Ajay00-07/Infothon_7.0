@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -94,8 +95,8 @@ export default {
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "glow-pulse": {
-          "0%, 100%": { boxShadow: "0 0 15px hsl(48 100% 50% / 0.4)" },
-          "50%": { boxShadow: "0 0 30px hsl(48 100% 50% / 0.6), 0 0 60px hsl(48 100% 50% / 0.3)" },
+          "0%, 100%": { boxShadow: "0 0 15px hsl(91 100% 50% / 0.4)" },
+          "50%": { boxShadow: "0 0 30px hsl(91 100% 50% / 0.6), 0 0 60px hsl(91 100% 50% / 0.3)" },
         },
         float: {
           "0%, 100%": { transform: "translateY(0)" },
@@ -113,5 +114,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;

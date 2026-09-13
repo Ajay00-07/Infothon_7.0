@@ -2,63 +2,50 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import SectionHeading from "@/components/SectionHeading";
 import Footer from "@/components/Footer";
-import { ImageIcon } from "lucide-react";
+import { ImageIcon, X } from "lucide-react";
 
 const gallery = [
-  { src: "/gallery/photo1.jpg", span: "md:col-span-2 md:row-span-2" },
-  { src: "/gallery/2.jpeg", span: "" },
-  { src: "/gallery/photo3.jpeg", span: "" },
-  { src: "/gallery/photo4.jpeg", span: "" },
-  { src: "/gallery/photo5.jpeg", span: "md:col-span-2" },
-  { src: "/gallery/1234.jpeg", span: "md:col-span-2" },
+  { src: "/gallery/g1.jpg" },
+  { src: "/gallery/g2.jpg" },
+  { src: "/gallery/g3.jpg" },
+  { src: "/gallery/g4.jpg" },
+  { src: "/gallery/g5.jpg" },
 ];
 
 const teams = [
   {
-    label: "Faculty Coordinators",
-    members: [
-      { name: "Prof. Manjesh R", role: "Faculty Coordinator", initials: "FC" },
-      { name: "Dr. R Kasturi Rangan", role: "Faculty Coordinator", initials: "FC" },
-    ],
-  },
-  {
     label: "Lead Organizers",
     members: [
-      { name: "Sanjana R", role: "Lead Organizer", initials: "LO", desc: "Overseeing the entire event — from ideation to execution, ensuring every team is aligned and every milestone is met." },
-      { name: "Priyadarshani Sarja", role: "Lead Organizer", initials: "LO", desc: "Coordinating cross-team efforts and managing key stakeholder communications throughout the event." },
-      { name: "Akash Valmiki", role: "Lead Organizer", initials: "LO", desc: "Supporting event leadership in driving the vision of Infothon 7.0 from planning to delivery." },
+      { name: "Priyadarshani Sarja", role: "Lead Organizer", initials: "LO" },
+      { name: "Sukrutha K", role: "Lead Organizer", initials: "LO" },
     ],
   },
   {
     label: "Technical Team",
     members: [
-      { name: "Sreevathsa R", role: "Technical Head", initials: "TH", desc: "Architecting the hackathon's tech infrastructure — website, judging platforms, and dev environment setup." },
-      { name: "Preetham SM", role: "Unstop Organizer", initials: "UO", desc: "Leading the Unstop team in managing registrations and participant engagement." },
-      { name: "Dhurva D", role: "Tech Team", initials: "TT", desc: "Making the hackathon a success through effective technical coordination and management." },
+      { name: "Dheeraj LY", role: "Unstop Organizer", initials: "UO" },
+      { name: "Srushti Shashikanth Patil", role: "Unstop Organizer", initials: "UO" },
+      { name: "Ajay Kumar R", role: "Technical Head", initials: "TH" },
+      { name: "Abhinav C", role: "Tech Team", initials: "TT" },
     ],
   },
   {
     label: "Overall Co-ordinators",
     members: [
-      { name: "Pragna C", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
-      { name: "Unnathi P", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
-      { name: "Raghav Bhat", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
-      { name: "Shreyas Gowdru", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
-      { name: "Anupama M", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
-      { name: "Archana Anil Patil", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
-      { name: "Pranamya R", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
-      { name: "Sukrutha K", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
-      { name: "Vaishnavi N Kamath", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
-      { name: "Khushi Kiran Jigali", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
-      { name: "Likitha C", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
-      { name: "Srushti Ravindra", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
-      { name: "Kuber Lakshman Nayaka", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
-      { name: "Likith T B", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
-      { name: "Mahesh C", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
-      { name: "Akshay Nadig", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
-      { name: "Jnyanesh", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
-      { name: "Nithesh J", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
-      { name: "Prabhav G K", role: "Co-ordinator", initials: "CO", desc: "Making the hackathon a success through effective coordination and management." },
+      { name: "Athripriya K Poojari", role: "Co-ordinator", initials: "CO" },
+      { name: "Vasudev S", role: "Co-ordinator", initials: "CO" },
+      { name: "Nikhil S P", role: "Co-ordinator", initials: "CO" },
+      { name: "Chethas Gowda D", role: "Co-ordinator", initials: "CO" },
+      { name: "Ajith Raj P", role: "Co-ordinator", initials: "CO" },
+      { name: "Poorvitha M", role: "Co-ordinator", initials: "CO" },
+      { name: "Archana Anil Patil", role: "Co-ordinator", initials: "CO" },
+      { name: "Nudi C", role: "Co-ordinator", initials: "CO" },
+      { name: "Neha HK", role: "Co-ordinator", initials: "CO" },
+      { name: "Nithyashree", role: "Co-ordinator", initials: "CO" },
+      { name: "Khushi R", role: "Co-ordinator", initials: "CO" },
+      { name: "Poorvi RS", role: "Co-ordinator", initials: "CO" },
+      { name: "Sneha Pradeep Raj", role: "Co-ordinator", initials: "CO" },
+      { name: "Likitha C", role: "Co-ordinator", initials: "CO" },
     ],
   },
 ];
@@ -69,7 +56,7 @@ const stagger = {
   viewport: { once: true },
 };
 
-const MemberChip = ({ member }: { member: typeof teams[0]["members"][0] }) => {
+const MemberChip = ({ member }: { member: { name: string; role: string; initials: string; desc?: string } }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -93,7 +80,7 @@ const MemberChip = ({ member }: { member: typeof teams[0]["members"][0] }) => {
       </motion.div>
 
       <AnimatePresence>
-        {hovered && (
+        {hovered && member.desc && (
           <motion.div
             initial={{ opacity: 0, y: 6, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -112,88 +99,134 @@ const MemberChip = ({ member }: { member: typeof teams[0]["members"][0] }) => {
   );
 };
 
-const About = () => (
-  <div className="min-h-screen bg-background pt-24 overflow-x-hidden">
-    <div className="container mx-auto px-4 py-16">
+const About = () => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-      {/* About */}
-      <SectionHeading title="About Infothon" subtitle="Where innovation meets impact" />
-      <motion.div {...stagger} className="glass-card neon-border p-8 md:p-12 max-w-3xl mx-auto mb-24 text-center">
-        <p className="text-muted-foreground leading-relaxed">
-          Infothon is the flagship hackathon of the Department of Information Science & Engineering at Vidyavardhaka College of Engineering — a platform where curious minds come together to build, break, and innovate.
-          <br /><br />
-          Now in its 6th edition, Infothon has grown into one of the most anticipated tech events on campus, bringing together students, developers, and problem-solvers to tackle real-world challenges head-on.
-          <br /><br />
-          Over the years, Infothon has become more than just a competition — it's a culture. A space where ideas get stress-tested, teams push their limits, and solutions that actually matter come to life.
-          <br /><br />
-          Infothon 7.0 continues that legacy — bigger, bolder, and built for the builders of tomorrow.
-        </p>
-      </motion.div>
+  return (
+    <div className="min-h-screen bg-background pt-24 overflow-x-hidden">
+      <div className="container mx-auto px-4 py-16">
 
-      {/* Organizers */}
-      <SectionHeading title="Our Team" subtitle="The people who make it happen" />
-      <div className="max-w-4xl mx-auto mb-24 space-y-10">
-        {teams.map((team, ti) => (
-          <motion.div
-            key={ti}
-            {...stagger}
-            transition={{ delay: ti * 0.1 }}
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <span className="font-display text-xs font-bold uppercase tracking-[0.2em] text-primary/50">
-                {String(ti + 1).padStart(2, "0")}
-              </span>
-              <h3 className="font-display text-sm font-bold uppercase tracking-[0.15em] text-foreground/70">{team.label}</h3>
-              <div className="flex-1 h-px bg-border" />
-              <span className="text-xs text-muted-foreground">{team.members.length} members</span>
-            </div>
+        {/* About */}
+        <SectionHeading title="About Infothon" subtitle="Where innovation meets impact" />
+        <motion.div {...stagger} className="glass-card neon-border p-8 md:p-12 max-w-3xl mx-auto mb-24 text-center">
+          <p className="text-muted-foreground leading-relaxed">
+            Infothon is the flagship hackathon of the Department of Information Science & Engineering at Vidyavardhaka College of Engineering — a platform where curious minds come together to build, break, and innovate.
+            <br /><br />
+            Now in its 7th edition, Infothon has grown into one of the most anticipated tech events on campus, bringing together students, developers, and problem-solvers to tackle real-world challenges head-on.
+            <br /><br />
+            Over the years, Infothon has become more than just a competition — it's a culture. A space where ideas get stress-tested, teams push their limits, and solutions that actually matter come to life.
+            <br /><br />
+            Infothon 7.0 continues that legacy — bigger, bolder, and built for the builders of tomorrow.
+          </p>
+        </motion.div>
 
-            {/* All screens: chips */}
-            <div className="flex flex-wrap gap-2 pl-8">
-              {team.members.map((member, mi) => (
-                <motion.div
-                  key={mi}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: ti * 0.05 + mi * 0.06 }}
-                >
-                  <MemberChip member={member} />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Gallery */}
-      <SectionHeading title="Gallery" subtitle="Moments from past editions" />
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto mb-24">
-        {gallery.map((item, i) => (
-          <motion.div
-            key={i}
-            {...stagger}
-            transition={{ delay: i * 0.08 }}
-            className={`glass-card hover:neon-border transition-all duration-500 group overflow-hidden relative ${item.span}`}
-          >
-            {item.src ? (
-              <img
-                src={item.src}
-                alt="Gallery"
-                className="w-full h-full object-cover min-h-40 group-hover:scale-105 transition-transform duration-500"
-              />
-            ) : (
-              <div className="w-full min-h-40 h-full flex flex-col items-center justify-center gap-2 p-4">
-                <ImageIcon className="w-8 h-8 text-primary/40" />
+        {/* Organizers */}
+        <SectionHeading title="Our Team" subtitle="The people who make it happen" />
+        <div className="max-w-4xl mx-auto mb-24 space-y-10">
+          {teams.map((team, ti) => (
+            <motion.div
+              key={ti}
+              {...stagger}
+              transition={{ delay: ti * 0.1 }}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <span className="font-display text-xs font-bold uppercase tracking-[0.2em] text-primary/50">
+                  {String(ti + 1).padStart(2, "0")}
+                </span>
+                <h3 className="font-display text-sm font-bold uppercase tracking-[0.15em] text-foreground/70">{team.label}</h3>
+                <div className="flex-1 h-px bg-border" />
+                <span className="text-xs text-muted-foreground">{team.members.length} members</span>
               </div>
-            )}
-          </motion.div>
-        ))}
+
+              {/* All screens: chips */}
+              <div className="flex flex-wrap gap-2 pl-8">
+                {team.members.map((member, mi) => (
+                  <motion.div
+                    key={mi}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: ti * 0.05 + mi * 0.06 }}
+                  >
+                    <MemberChip member={member} />
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Gallery */}
+        <SectionHeading title="Gallery" subtitle="Moments from past editions" />
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 max-w-4xl mx-auto mb-24">
+          {gallery.map((item, i) => (
+            <motion.div
+              key={i}
+              {...stagger}
+              transition={{ delay: i * 0.08 }}
+              onClick={() => setSelectedImage(item.src)}
+              className="glass-card hover:neon-border transition-all duration-300 group overflow-hidden relative aspect-square rounded-2xl cursor-pointer"
+            >
+              {item.src ? (
+                <>
+                  <img
+                    src={item.src}
+                    alt={`Gallery item ${i + 1}`}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="text-[10px] font-mono text-primary font-bold uppercase tracking-wider bg-black/70 px-2 py-1 rounded border border-primary/40 backdrop-blur-sm">
+                      View
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center gap-2 p-4">
+                  <ImageIcon className="w-8 h-8 text-primary/40" />
+                </div>
+              )}
+            </motion.div>
+          ))}
+        </div>
+
       </div>
 
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-zoom-out"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative max-w-4xl max-h-[85vh] rounded-2xl overflow-hidden border border-primary/30 shadow-2xl shadow-primary/10 bg-card"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/70 border border-primary/40 text-primary flex items-center justify-center hover:bg-primary hover:text-black transition-all"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <img
+                src={selectedImage}
+                alt="Gallery Preview"
+                className="w-full h-full max-h-[85vh] object-contain rounded-2xl"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <Footer />
     </div>
-    <Footer />
-  </div>
-);
+  );
+};
 
 export default About;

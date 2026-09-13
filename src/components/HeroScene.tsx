@@ -63,7 +63,7 @@ const HeroScene = () => {
                 }}
               >
                 <div className="w-full h-full flex items-center justify-center text-primary font-display text-xs tracking-widest opacity-60">
-                  6.0
+                  7.0
                 </div>
               </div>
 
