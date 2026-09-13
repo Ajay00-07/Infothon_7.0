@@ -208,69 +208,8 @@ const Problems = () => {
         />
 
         <p className="text-center text-sm text-muted-foreground/60 mb-6">
-          ⚠️ Open problem statements are not allowed
-           — participants must choose from the listed problem statements only
-
+          Coming Soon
         </p>
-
-        <div className="flex justify-center mb-10">
-          <a href="/infothon_template.pptx" download>
-            <Button variant="neon" size="lg" className="gap-2">
-              <Download className="w-5 h-5" />
-              Download Template PPT
-            </Button>
-          </a>
-        </div>
-
-        {/* Filter tabs */}
-        <div className="flex items-center gap-2 mb-8 border-b border-white/8 pb-4">
-          {THEMES.map((t) => (
-            <button
-              key={t.key}
-              onClick={() => setActiveTheme(t.key)}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ${
-                activeTheme === t.key
-                  ? t.key === "all"
-                    ? "gradient-primary text-primary-foreground shadow-md"
-                    : t.key === "agentic"
-                    ? "bg-violet-500 text-white shadow-md shadow-violet-500/20"
-                    : "bg-emerald-500 text-white shadow-md shadow-emerald-500/20"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {t.label}
-            </button>
-          ))}
-          <span className="ml-auto text-xs text-muted-foreground/40">{filtered.length} total</span>
-        </div>
-
-        {/* Agentic section */}
-        {agFiltered.length > 0 && (
-          <div className="mb-10">
-            {activeTheme === "all" && (
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-2 h-2 rounded-full bg-violet-500" />
-                <span className="text-xs font-bold uppercase tracking-widest text-violet-400">Agentic AI & Autonomous Systems</span>
-                <span className="text-xs text-muted-foreground/40 ml-auto">{agFiltered.length} problems</span>
-              </div>
-            )}
-            <div>{renderGroup(agFiltered, 0)}</div>
-          </div>
-        )}
-
-        {/* SDG section */}
-        {sdgFiltered.length > 0 && (
-          <div>
-            {activeTheme === "all" && (
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">Sustainable Development Goals</span>
-                <span className="text-xs text-muted-foreground/40 ml-auto">{sdgFiltered.length} problems</span>
-              </div>
-            )}
-            <div>{renderGroup(sdgFiltered, agFiltered.length)}</div>
-          </div>
-        )}
       </div>
 
       <AnimatePresence>

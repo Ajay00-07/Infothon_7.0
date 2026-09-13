@@ -9,7 +9,7 @@ const Footer = () => (
         {/* Logo + Description */}
         <div>
           <h3 className="font-display text-primary text-lg mb-4 neon-text">
-            INFOTHON 6.0
+            INFOTHON 7.0
           </h3>
           <p className="text-muted-foreground text-sm leading-relaxed">
             Innovate. Build. Disrupt. The premier hackathon pushing the boundaries of technology.
@@ -88,7 +88,7 @@ const Footer = () => (
 
       {/* Bottom Copyright */}
       <div className="border-t border-border mt-8 pt-6 text-center text-muted-foreground text-xs">
-        © {new Date().getFullYear()} Infothon 6.0. All rights reserved.
+        © {new Date().getFullYear()} Infothon 7.0. All rights reserved.
       </div>
     </div>
   </footer>

@@ -26,7 +26,7 @@ const teams = [
     members: [
       { name: "Sanjana R", role: "Lead Organizer", initials: "LO", desc: "Overseeing the entire event — from ideation to execution, ensuring every team is aligned and every milestone is met." },
       { name: "Priyadarshani Sarja", role: "Lead Organizer", initials: "LO", desc: "Coordinating cross-team efforts and managing key stakeholder communications throughout the event." },
-      { name: "Akash Valmiki", role: "Lead Organizer", initials: "LO", desc: "Supporting event leadership in driving the vision of Infothon 6.0 from planning to delivery." },
+      { name: "Akash Valmiki", role: "Lead Organizer", initials: "LO", desc: "Supporting event leadership in driving the vision of Infothon 7.0 from planning to delivery." },
     ],
   },
   {
@@ -126,7 +126,7 @@ const About = () => (
           <br /><br />
           Over the years, Infothon has become more than just a competition — it's a culture. A space where ideas get stress-tested, teams push their limits, and solutions that actually matter come to life.
           <br /><br />
-          Infothon 6.0 continues that legacy — bigger, bolder, and built for the builders of tomorrow.
+          Infothon 7.0 continues that legacy — bigger, bolder, and built for the builders of tomorrow.
         </p>
       </motion.div>
 

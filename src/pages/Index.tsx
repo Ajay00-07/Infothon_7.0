@@ -50,7 +50,7 @@ const Index = () => {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="font-display text-5xl md:text-7xl lg:text-8xl font-black text-primary neon-text mb-6"
           >
-            INFOTHON 6.0
+            INFOTHON 7.0
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -81,59 +81,11 @@ const Index = () => {
   <div className="container mx-auto">
     <SectionHeading 
       title="Event Flow" 
-      subtitle="Complete schedule of Infothon 6.0 hackathon" 
+      subtitle="Complete schedule of Infothon 7.0 hackathon"
     />
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-
-      {/* Day 1 */}
-      <div className="glass-card p-8">
-        <h3 className="font-display text-xl font-bold text-primary mb-6">
-          April 11 • Saturday
-        </h3>
-
-        <div className="space-y-4">
-          {[
-            ["08:00 AM", "Registration"],
-            ["09:00 AM", "Start of the Event"],
-            ["10:00 AM", "Inauguration"],
-            ["11:00 AM", "Tea & Coffee"],
-            ["01:30 PM", "Lunch"],
-            ["02:00 PM", "1st Checkpoint"],
-            ["05:00 PM", "Evening Snacks"],
-            ["08:00 PM", "2nd Checkpoint"],
-            ["09:00 PM", "Dinner"],
-          ].map((item, i) => (
-            <div key={i} className="flex justify-between border-b border-border pb-2">
-              <span className="text-muted-foreground text-sm">{item[0]}</span>
-              <span className="text-foreground text-sm font-medium">{item[1]}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Day 2 */}
-      <div className="glass-card p-8">
-        <h3 className="font-display text-xl font-bold text-primary mb-6">
-          April 12 • Sunday
-        </h3>
-
-        <div className="space-y-4">
-          {[
-            ["12:00 AM", "Tea & Snacks"],
-            ["06:00 AM", "Tea & Coffee"],
-            ["08:30 AM", "Breakfast"],
-            ["09:00 AM", "Final Checkpoint"],
-            ["12:00 PM", "Prize Distribution & Valedictory"],
-          ].map((item, i) => (
-            <div key={i} className="flex justify-between border-b border-border pb-2">
-              <span className="text-muted-foreground text-sm">{item[0]}</span>
-              <span className="text-foreground text-sm font-medium">{item[1]}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
+    <div className="glass-card p-8 max-w-5xl mx-auto text-center">
+      <p className="text-muted-foreground">Coming Soon</p>
     </div>
   </div>
 </section>
@@ -142,13 +94,13 @@ const Index = () => {
         <div className="container mx-auto">
           <SectionHeading
             title="Event Overview"
-            subtitle="A 24 hour hackathon bringing the brightest minds together to solve real-world challenges."
+            subtitle="A 10 hour hackathon bringing the brightest minds together to solve real-world challenges."
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { icon: Clock,  title: "24 hours",    desc: "Non-stop innovation and coding marathon" },
+              { icon: Clock,  title: "10 hours",    desc: "Non-stop innovation and coding marathon" },
               { icon: Users,  title: "Open to All", desc: "Students and enthusiasts welcome" },
-              { icon: Trophy, title: "₹40,000+",    desc: "Prize pool with exciting goodies and swag" },
+              { icon: Trophy, title: "Coming Soon", desc: "Prize pool with exciting goodies and swag" },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -168,12 +120,12 @@ const Index = () => {
       {/* Timeline */}
       <section className="relative z-10 py-24 px-4 bg-card/30">
         <div className="container mx-auto">
-          <SectionHeading title="Timeline" subtitle="Key milestones for Infothon 6.0" />
+          <SectionHeading title="Timeline" subtitle="Key milestones for Infothon 7.0" />
           <div className="max-w-3xl mx-auto space-y-0">
             {[
               { icon: Calendar,    date: "March 28th",              title: "Registration Ends", desc: "Sign up and form your team" },
               { icon: Send,        date: "March 29th – April 1st",  title: "PPT Submission",    desc: "Submit your solution approach" },
-              { icon: Zap,         date: "April 11th and 12th",     title: "Hackathon Day",     desc: "24 hours of building and hacking" },
+              { icon: Zap,         date: "April 11th and 12th",     title: "Hackathon Day",     desc: "10 hours of building and hacking" },
               { icon: CheckCircle, date: "April 12th",              title: "Results Announced", desc: "Winners declared and prizes distributed" },
             ].map((item, i) => (
               <motion.div
@@ -229,7 +181,7 @@ const Index = () => {
       {/* About VVCE & ISE */}
       <section className="relative z-10 py-24 px-4 bg-card/30 overflow-hidden">
         <div className="container mx-auto max-w-5xl">
-          <SectionHeading title="About Us" subtitle="The institution behind Infothon 6.0" />
+          <SectionHeading title="About Us" subtitle="The institution behind Infothon 7.0" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
@@ -352,8 +304,8 @@ const Index = () => {
                 <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-primary/60 mb-1">Legacy</p>
                 <h3 className="font-display text-base font-bold text-foreground mb-3">About Infothon</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Infothon, hosted by the Department of ISE at VVCE, has been a flagship event fostering collaboration, innovation, and knowledge sharing among bright minds. From Infothon 1.0 through 5.0, each edition has set new benchmarks — inspiring creativity, teamwork, and impactful projects. Now in its{" "}
-                  <span className="text-primary font-semibold">sixth edition</span>, Infothon 6.0 is a platform where participants go beyond coding to explore ideas, build networks, and create solutions that matter.
+                  Infothon, hosted by the Department of ISE at VVCE, has been a flagship event fostering collaboration, innovation, and knowledge sharing among bright minds. From Infothon 1.0 through 6.0, each edition has set new benchmarks — inspiring creativity, teamwork, and impactful projects. Now in its{" "}
+                  <span className="text-primary font-semibold">Seventh Edition</span>, Infothon 7.0 is a platform where participants go beyond coding to explore ideas, build networks, and create solutions that matter.
                 </p>
               </div>
             </div>
@@ -372,7 +324,7 @@ const Index = () => {
 <div className="rounded-3xl overflow-hidden border-2 border-primary/50 hover:border-primary hover:shadow-[0_0_40px_hsl(48_100%_50%_/_0.3)] transition-all duration-500 flex items-center justify-center bg-white/95">
         <img
           src="/677.png"
-          alt="Infothon 6.0 Sponsors"
+          alt="Infothon 7.0 Sponsors"
           className="max-w-xl w-full object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
         />
       </div>

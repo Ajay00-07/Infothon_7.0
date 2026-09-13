@@ -35,7 +35,7 @@ const Sponsors = () => (
   <div className="min-h-screen bg-background pt-24">
     <div className="container mx-auto px-4 py-16">
       <SectionHeading
-        title="Partner With Infothon 6.0"
+        title="Partner With Infothon 7.0"
         subtitle="Join us in empowering the next generation of innovators"
       />
 

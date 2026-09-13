@@ -39,7 +39,7 @@ const Navbar = () => {
                 Infothon
               </span>
               <span className="text-foreground/40 text-[10px] tracking-[0.3em] uppercase">
-                6.0
+                7.0
               </span>
             </div>
           </Link>
