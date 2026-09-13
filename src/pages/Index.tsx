@@ -43,7 +43,7 @@ const Index = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary font-mono text-xs font-semibold uppercase tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(124,255,79,0.15)]"
+            className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-primary/35 bg-[#050907]/70 backdrop-blur-md text-primary font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-6 shadow-[0_0_20px_rgba(124,255,79,0.18)]"
           >
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#7CFF4F]" />
             Dept. of ISE Presents
@@ -58,33 +58,42 @@ const Index = () => {
             <img
               src="/logo.png"
               alt="INFOTHON 7.0"
-              className="h-28 md:h-36 lg:h-44 w-auto object-contain rounded-2xl md:rounded-3xl border border-primary/25 drop-shadow-[0_0_35px_rgba(124,255,79,0.5)]"
+              className="h-28 md:h-36 lg:h-44 w-auto object-contain rounded-2xl md:rounded-3xl border border-primary/25 drop-shadow-[0_0_35px_rgba(124,255,79,0.4)] opacity-95"
             />
           </motion.div>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="font-display text-sm md:text-lg tracking-[0.25em] uppercase text-muted-foreground mb-8"
+            className="mb-8 inline-block"
           >
-            Innovate <span className="text-primary">•</span> Build <span className="text-primary">•</span> Disrupt
-          </motion.p>
+            <div className="px-6 py-2.5 rounded-full border border-primary/20 bg-[#050907]/60 backdrop-blur-sm shadow-[0_0_15px_rgba(124,255,79,0.06)]">
+              <p className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-foreground/90 font-medium">
+                Architecting an Autonomous Tomorrow.
+              </p>
+            </div>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
-            className="flex flex-wrap gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-5 justify-center items-center"
           >
-            <Button variant="hero" size="lg" asChild className="rounded-xl px-8 shadow-[0_0_24px_rgba(124,255,79,0.4)] hover:shadow-[0_0_36px_rgba(124,255,79,0.7)] transition-all duration-300">
+            <Button
+              size="lg"
+              asChild
+              className="h-14 px-10 rounded-2xl bg-[#050907]/70 backdrop-blur-md border border-primary/40 text-primary font-display font-extrabold text-sm md:text-base tracking-wider uppercase shadow-[0_0_24px_rgba(124,255,79,0.25)] hover:border-primary hover:bg-[#050907]/90 hover:-translate-y-1 hover:shadow-[0_0_36px_rgba(124,255,79,0.5)] active:scale-95 transition-all duration-300"
+            >
               <Link to="/register">Register Now</Link>
             </Button>
-            <Button variant="neon" size="lg" asChild className="rounded-xl px-6 border-primary/40 hover:border-primary">
+            <Button
+              size="lg"
+              asChild
+              className="h-14 px-8 rounded-2xl bg-[#050907]/60 backdrop-blur-md border border-primary/25 text-foreground/90 font-display font-bold text-sm md:text-base tracking-wider uppercase hover:border-primary/60 hover:text-primary hover:bg-[#050907]/80 hover:-translate-y-1 hover:shadow-[0_0_24px_rgba(124,255,79,0.3)] active:scale-95 transition-all duration-300"
+            >
               <Link to="/problems">View Problem Statements</Link>
-            </Button>
-            <Button variant="outline" size="lg" asChild className="rounded-xl px-6 border-primary/20 hover:border-primary/50 text-foreground/80 hover:text-foreground">
-              <Link to="/results">🏆 Shortlisted Teams</Link>
             </Button>
           </motion.div>
         </div>

@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,16 +8,24 @@ import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import BackgroundEffects from "@/components/BackgroundEffects";
 import Index from "./pages/Index";
-import Problems from "./pages/Problems";
-import Sponsors from "./pages/Sponsors";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Register from "./pages/Register";
-import NotFound from "./pages/NotFound";
-import Results from "./pages/Results";
-import Contributors from "./pages/Contributors";
+
+// Lazy loading secondary routes to reduce initial JS payload size
+const Problems = lazy(() => import("./pages/Problems"));
+const Sponsors = lazy(() => import("./pages/Sponsors"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Register = lazy(() => import("./pages/Register"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const Results = lazy(() => import("./pages/Results"));
+const Contributors = lazy(() => import("./pages/Contributors"));
 
 const queryClient = new QueryClient();
+
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-[#050907]">
+    <div className="w-8 h-8 rounded-full border-2 border-primary/20 border-t-primary animate-spin" />
+  </div>
+);
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -30,17 +39,19 @@ const AnimatedRoutes = () => {
         exit={{ opacity: 0.9, y: -6 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
       >
-        <Routes location={location}>
-          <Route path="/" element={<Index />} />
-          <Route path="/problems" element={<Problems />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contributors" element={<Contributors />} />
-          <Route path="/sponsors" element={<Sponsors />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/results" element={<Results />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<PageLoader />}>
+          <Routes location={location}>
+            <Route path="/" element={<Index />} />
+            <Route path="/problems" element={<Problems />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contributors" element={<Contributors />} />
+            <Route path="/sponsors" element={<Sponsors />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/results" element={<Results />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </motion.div>
     </AnimatePresence>
   );

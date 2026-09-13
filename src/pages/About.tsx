@@ -14,6 +14,14 @@ const gallery = [
 
 const teams = [
   {
+    label: "Faculty Coordinators",
+    isFaculty: true,
+    members: [
+      { name: "Prof. Manjesh R", role: "Faculty Coordinator", initials: "FC" },
+      { name: "Dr. R Kasturi Rangan", role: "Faculty Coordinator", initials: "FC" },
+    ],
+  },
+  {
     label: "Lead Organizers",
     members: [
       { name: "Priyadarshani Sarja", role: "Lead Organizer", initials: "LO" },
@@ -31,21 +39,22 @@ const teams = [
   },
   {
     label: "Overall Co-ordinators",
+    isOverall: true,
     members: [
-      { name: "Athripriya K Poojari", role: "Co-ordinator", initials: "CO" },
-      { name: "Vasudev S", role: "Co-ordinator", initials: "CO" },
-      { name: "Nikhil S P", role: "Co-ordinator", initials: "CO" },
-      { name: "Chethas Gowda D", role: "Co-ordinator", initials: "CO" },
-      { name: "Ajith Raj P", role: "Co-ordinator", initials: "CO" },
-      { name: "Poorvitha M", role: "Co-ordinator", initials: "CO" },
-      { name: "Archana Anil Patil", role: "Co-ordinator", initials: "CO" },
-      { name: "Nudi C", role: "Co-ordinator", initials: "CO" },
-      { name: "Neha HK", role: "Co-ordinator", initials: "CO" },
-      { name: "Nithyashree", role: "Co-ordinator", initials: "CO" },
-      { name: "Khushi R", role: "Co-ordinator", initials: "CO" },
-      { name: "Poorvi RS", role: "Co-ordinator", initials: "CO" },
-      { name: "Sneha Pradeep Raj", role: "Co-ordinator", initials: "CO" },
-      { name: "Likitha C", role: "Co-ordinator", initials: "CO" },
+      { name: "Athripriya K Poojari", role: "Co-ordinator", initials: "AP" },
+      { name: "Vasudev S", role: "Co-ordinator", initials: "VS" },
+      { name: "Nikhil S P", role: "Co-ordinator", initials: "NS" },
+      { name: "Chethas Gowda D", role: "Co-ordinator", initials: "CG" },
+      { name: "Ajith Raj P", role: "Co-ordinator", initials: "AR" },
+      { name: "Poorvitha M", role: "Co-ordinator", initials: "PM" },
+      { name: "Archana Anil Patil", role: "Co-ordinator", initials: "AP" },
+      { name: "Nudi C", role: "Co-ordinator", initials: "NC" },
+      { name: "Neha HK", role: "Co-ordinator", initials: "NH" },
+      { name: "Nithyashree", role: "Co-ordinator", initials: "NS" },
+      { name: "Khushi R", role: "Co-ordinator", initials: "KR" },
+      { name: "Poorvi RS", role: "Co-ordinator", initials: "PR" },
+      { name: "Sneha Pradeep Raj", role: "Co-ordinator", initials: "SR" },
+      { name: "Likitha C", role: "Co-ordinator", initials: "LC" },
     ],
   },
 ];
@@ -55,6 +64,22 @@ const stagger = {
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
 };
+
+const FacultyCard = ({ member }: { member: { name: string; role: string; initials: string } }) => (
+  <motion.div
+    whileHover={{ y: -3 }}
+    transition={{ duration: 0.2 }}
+    className="glass-card-hover p-5 rounded-2xl border border-primary/30 flex items-center gap-4 bg-primary/5 hover:border-primary/60 hover:bg-primary/10 transition-all duration-300 shadow-[0_0_15px_rgba(124,255,79,0.08)]"
+  >
+    <div className="w-12 h-12 rounded-xl bg-primary/20 border border-primary/40 flex items-center justify-center text-primary font-mono font-bold text-sm flex-shrink-0 shadow-[0_0_10px_#7CFF4F]">
+      {member.initials}
+    </div>
+    <div>
+      <h4 className="font-sans font-bold text-base md:text-lg text-foreground tracking-normal">{member.name}</h4>
+      <p className="text-primary/80 font-mono text-xs font-semibold tracking-wider uppercase mt-0.5">{member.role}</p>
+    </div>
+  </motion.div>
+);
 
 const MemberChip = ({ member }: { member: { name: string; role: string; initials: string; desc?: string } }) => {
   const [hovered, setHovered] = useState(false);
@@ -68,14 +93,14 @@ const MemberChip = ({ member }: { member: { name: string; role: string; initials
       <motion.div
         whileHover={{ y: -2 }}
         transition={{ duration: 0.15 }}
-        className="flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-primary/20 bg-primary/5 hover:border-primary/50 hover:bg-primary/10 transition-all duration-200 cursor-default"
+        className="flex items-center gap-3 px-4 py-2.5 rounded-2xl border border-primary/20 bg-primary/5 hover:border-primary/50 hover:bg-primary/10 transition-all duration-200 cursor-default"
       >
-        <span className="w-7 h-7 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center text-primary font-display font-bold text-[10px] flex-shrink-0">
+        <span className="w-8 h-8 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-primary font-mono font-bold text-xs flex-shrink-0">
           {member.initials}
         </span>
         <div>
-          <p className="font-display font-semibold text-sm text-foreground leading-none mb-0.5">{member.name}</p>
-          <p className="text-muted-foreground text-[11px] leading-none">{member.role}</p>
+          <p className="font-sans font-semibold text-sm text-foreground tracking-normal leading-snug mb-0.5">{member.name}</p>
+          <p className="text-muted-foreground font-sans text-xs leading-none">{member.role}</p>
         </div>
       </motion.div>
 
@@ -109,7 +134,7 @@ const About = () => {
         {/* About */}
         <SectionHeading title="About Infothon" subtitle="Where innovation meets impact" />
         <motion.div {...stagger} className="glass-card neon-border p-8 md:p-12 max-w-3xl mx-auto mb-24 text-center">
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="text-muted-foreground leading-relaxed font-sans">
             Infothon is the flagship hackathon of the Department of Information Science & Engineering at Vidyavardhaka College of Engineering — a platform where curious minds come together to build, break, and innovate.
             <br /><br />
             Now in its 7th edition, Infothon has grown into one of the most anticipated tech events on campus, bringing together students, developers, and problem-solvers to tackle real-world challenges head-on.
@@ -138,20 +163,75 @@ const About = () => {
                 <span className="text-xs text-muted-foreground">{team.members.length} members</span>
               </div>
 
-              {/* All screens: chips */}
-              <div className="flex flex-wrap gap-2 pl-8">
-                {team.members.map((member, mi) => (
-                  <motion.div
-                    key={mi}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: ti * 0.05 + mi * 0.06 }}
-                  >
-                    <MemberChip member={member} />
-                  </motion.div>
-                ))}
-              </div>
+              {team.isFaculty ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pl-0 md:pl-8">
+                  {team.members.map((member, mi) => (
+                    <motion.div
+                      key={mi}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: mi * 0.12 + 0.1, duration: 0.5 }}
+                    >
+                      <FacultyCard member={member} />
+                    </motion.div>
+                  ))}
+                </div>
+              ) : team.isOverall ? (
+                <div className="pl-0 md:pl-8 space-y-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3.5">
+                    {team.members.map((member, mi) => (
+                      <motion.div
+                        key={mi}
+                        initial={{ opacity: 0, y: 15 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: mi * 0.03, duration: 0.3 }}
+                        whileHover={{ y: -2 }}
+                        className="flex items-center gap-3 p-3.5 rounded-2xl border border-primary/20 bg-primary/5 hover:border-primary/50 hover:bg-primary/10 transition-all duration-200"
+                      >
+                        <span className="w-9 h-9 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-primary font-mono font-bold text-xs flex-shrink-0">
+                          {member.initials}
+                        </span>
+                        <div className="min-w-0">
+                          <p className="font-sans font-semibold text-sm text-foreground tracking-normal leading-snug truncate">
+                            {member.name}
+                          </p>
+                          <p className="text-muted-foreground font-sans text-xs mt-0.5">
+                            {member.role}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Subtle divider & Tribute line */}
+                  <div className="pt-6 border-t border-primary/15 max-w-2xl mx-auto text-center">
+                    <div className="glass-card p-6 md:p-8 rounded-2xl border border-primary/25 bg-[#050907]/60 backdrop-blur-md shadow-[0_0_20px_rgba(124,255,79,0.08)]">
+                      <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-[11px] font-mono uppercase tracking-widest mb-3">
+                        ✦ WITH GRATITUDE ✦
+                      </div>
+                      <p className="text-foreground/90 font-sans text-xs md:text-sm leading-relaxed max-w-lg mx-auto">
+                        To all the coordinators behind the scenes — your dedication, support, and contribution make Infothon possible.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex flex-wrap gap-2.5 pl-0 md:pl-8">
+                  {team.members.map((member, mi) => (
+                    <motion.div
+                      key={mi}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: ti * 0.05 + mi * 0.06 }}
+                    >
+                      <MemberChip member={member} />
+                    </motion.div>
+                  ))}
+                </div>
+              )}
             </motion.div>
           ))}
         </div>

@@ -24,9 +24,13 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-3 px-4 md:px-8`}
-    >
+    <>
+      {/* Subtle Atmospheric Blur Layer Above Navbar */}
+      <div className="fixed top-0 left-0 right-0 h-20 bg-gradient-to-b from-[#050907]/90 via-[#050907]/50 to-transparent backdrop-blur-md z-40 pointer-events-none" />
+
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-3 px-4 md:px-8`}
+      >
       <div
         className={`mx-auto max-w-7xl flex items-center justify-between h-16 px-5 md:px-8 rounded-2xl transition-all duration-500 ${
           scrolled
@@ -143,7 +147,8 @@ const Navbar = () => {
         )}
       </AnimatePresence>
     </nav>
-  );
+  </>
+);
 };
 
 export default Navbar;

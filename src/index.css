@@ -129,6 +129,89 @@
       linear-gradient(to right, rgba(124, 255, 79, 0.03) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(124, 255, 79, 0.03) 1px, transparent 1px);
   }
+
+  .will-change-transform {
+    will-change: transform, opacity;
+  }
+}
+
+/* GPU Hardware-Accelerated CSS Keyframe Animations */
+@keyframes spinCW {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spinCCW {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes particleFall {
+  0% {
+    transform: translate3d(0, -10vh, 0);
+  }
+  100% {
+    transform: translate3d(var(--drift-x, 0px), 110vh, 0);
+  }
+}
+
+@keyframes particleDrift {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(var(--drift-x, 10px), var(--drift-y, -10px), 0);
+  }
+}
+
+@keyframes pulseOpacity {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes energyPulseWave {
+  0% {
+    transform: translate3d(-50%, -50%, 0) scale(0.5);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) scale(1.9);
+    opacity: 0;
+  }
+}
+
+.animate-spin-cw-fast {
+  animation: spinCW 12s linear infinite;
+}
+
+.animate-spin-cw-med {
+  animation: spinCW 20s linear infinite;
+}
+
+.animate-spin-cw-slow {
+  animation: spinCW 30s linear infinite;
+}
+
+.animate-spin-ccw-med {
+  animation: spinCCW 20s linear infinite;
+}
+
+.animate-scanline-down {
+  animation: scanlineDown 8s linear infinite;
+}
+
+.animate-scanline-up {
+  animation: scanlineUp 12s linear infinite 3s;
+}
+
+@keyframes scanlineDown {
+  0% { transform: translate3d(0, 0vh, 0); }
+  100% { transform: translate3d(0, 100vh, 0); }
+}
+
+@keyframes scanlineUp {
+  0% { transform: translate3d(0, 100vh, 0); }
+  100% { transform: translate3d(0, 0vh, 0); }
 }
 
 html {

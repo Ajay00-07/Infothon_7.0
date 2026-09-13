@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValue, MotionValue } from "framer-motion";
 
 // System 1: Portal Energy Field Particle Interface
 interface PortalParticleSpec {
@@ -44,15 +44,17 @@ interface RoamingCircleSpec {
   tiltAngle: number;
 }
 
-// Sub-component for individual Portal Attraction Particle with Cursor Gravity
+// Sub-component for individual Portal Attraction Particle with Zero Re-Render Cursor Gravity
 const AttractionParticle = ({
   spec,
   scrollYProgress,
-  mousePos,
+  mouseX,
+  mouseY,
 }: {
   spec: PortalParticleSpec;
   scrollYProgress: MotionValue<number>;
-  mousePos: { x: number; y: number };
+  mouseX: MotionValue<number>;
+  mouseY: MotionValue<number>;
 }) => {
   const scatterX = Math.cos(spec.angle) * spec.initialDist;
   const scatterY = Math.sin(spec.angle) * spec.initialDist;
@@ -62,13 +64,13 @@ const AttractionParticle = ({
 
   const endScroll = Math.min(0.75, spec.absorbTime * 2);
 
-  const posX = useTransform(
+  const scrollX = useTransform(
     scrollYProgress,
     [0, spec.startAttract, endScroll],
     [scatterX, targetX, 0]
   );
 
-  const posY = useTransform(
+  const scrollY = useTransform(
     scrollYProgress,
     [0, spec.startAttract, endScroll],
     [scatterY, targetY, 0]
@@ -86,8 +88,10 @@ const AttractionParticle = ({
     [1, 1.8]
   );
 
-  const cursorGravityX = mousePos.x * (spec.layer === 2 ? 0.4 : 0.2);
-  const cursorGravityY = mousePos.y * (spec.layer === 2 ? 0.4 : 0.2);
+  // Deriving cursor gravity without React re-renders
+  const gravityMult = spec.layer === 2 ? 0.4 : 0.2;
+  const posX = useTransform([scrollX, mouseX], ([sx, mx]) => (sx as number) + (mx as number) * gravityMult);
+  const posY = useTransform([scrollY, mouseY], ([sy, my]) => (sy as number) + (my as number) * gravityMult);
 
   return (
     <motion.div
@@ -97,20 +101,17 @@ const AttractionParticle = ({
         opacity,
         scale,
       }}
-      className={`absolute flex items-center justify-center pointer-events-none ${
+      className={`absolute flex items-center justify-center pointer-events-none will-change-transform ${
         spec.layer === 0 ? "z-0" : spec.layer === 1 ? "z-10" : "z-20"
       }`}
     >
-      <motion.div
-        animate={{
-          y: [0, spec.driftY + cursorGravityY, 0],
-          x: [0, spec.driftX + cursorGravityX, 0],
-        }}
-        transition={{
-          duration: 5 + (spec.id % 4) * 2,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+      <div
+        style={{
+          animation: `particleDrift ${5 + (spec.id % 4) * 2}s ease-in-out infinite`,
+          // @ts-ignore
+          "--drift-x": `${spec.driftX}px`,
+          "--drift-y": `${spec.driftY}px`,
+        } as React.CSSProperties}
         className="relative flex flex-col items-center justify-center"
       >
         {spec.hasTrail && (
@@ -127,16 +128,16 @@ const AttractionParticle = ({
           }}
           className={`rounded-full ${
             spec.layer === 2
-              ? "shadow-[0_0_10px_#7CFF4F]"
+              ? "shadow-[0_0_8px_#7CFF4F]"
               : "shadow-[0_0_4px_rgba(124,255,79,0.4)]"
           }`}
         />
-      </motion.div>
+      </div>
     </motion.div>
   );
 };
 
-// Sub-component for Distant Falling Atmospheric Particles
+// Sub-component for Distant Falling Atmospheric Particles (Pure Hardware-Accelerated CSS)
 const DistantFallingParticle = ({
   spec,
   scrollYProgress,
@@ -144,7 +145,6 @@ const DistantFallingParticle = ({
   spec: FallingParticleSpec;
   scrollYProgress: MotionValue<number>;
 }) => {
-  const scrollOffsetY = useTransform(scrollYProgress, [0, 0.6], [0, 100]);
   const scrollOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   return (
@@ -153,42 +153,18 @@ const DistantFallingParticle = ({
         left: `${spec.x}%`,
         top: `${spec.startY}%`,
         opacity: scrollOpacity,
-        y: scrollOffsetY,
       }}
       className="absolute pointer-events-none z-0"
     >
-      <motion.div
-        animate={{
-          y: ["0vh", "110vh"],
-          x: [0, spec.driftX, 0],
-          opacity: spec.hasPulse
-            ? [
-                spec.baseOpacity * 0.4,
-                spec.baseOpacity,
-                spec.baseOpacity * 1.5,
-                spec.baseOpacity * 0.4,
-              ]
-            : [spec.baseOpacity * 0.6, spec.baseOpacity, spec.baseOpacity * 0.6],
-        }}
-        transition={{
-          y: {
-            duration: spec.duration,
-            repeat: Infinity,
-            ease: "linear",
-            delay: spec.delay,
-          },
-          x: {
-            duration: spec.duration * 0.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          },
-          opacity: {
-            duration: spec.hasPulse ? 3.5 : 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          },
-        }}
-        className="relative flex flex-col items-center justify-center"
+      <div
+        style={{
+          animation: `particleFall ${spec.duration}s linear infinite`,
+          animationDelay: `${spec.delay}s`,
+          opacity: spec.baseOpacity,
+          // @ts-ignore
+          "--drift-x": `${spec.driftX}px`,
+        } as React.CSSProperties}
+        className="relative flex flex-col items-center justify-center will-change-transform"
       >
         {spec.hasTrail && (
           <div className="w-[1px] h-4 bg-gradient-to-t from-[#7CFF4F]/40 to-transparent mb-[-1px]" />
@@ -200,13 +176,13 @@ const DistantFallingParticle = ({
           }}
           className={`rounded-full ${
             spec.layer === 2
-              ? "bg-[#7CFF4F]/80 shadow-[0_0_6px_#7CFF4F]"
+              ? "bg-[#7CFF4F]/80 shadow-[0_0_5px_#7CFF4F]"
               : spec.layer === 1
               ? "bg-[#9DFF70]/50 shadow-[0_0_3px_rgba(157,255,112,0.3)]"
               : "bg-[#6EE7A0]/30"
           }`}
         />
-      </motion.div>
+      </div>
     </motion.div>
   );
 };
@@ -215,11 +191,13 @@ const DistantFallingParticle = ({
 const RoamingCircle = ({
   spec,
   scrollYProgress,
-  mousePos,
+  mouseX,
+  mouseY,
 }: {
   spec: RoamingCircleSpec;
   scrollYProgress: MotionValue<number>;
-  mousePos: { x: number; y: number };
+  mouseX: MotionValue<number>;
+  mouseY: MotionValue<number>;
 }) => {
   // Scroll convergence: tightens orbital radius & absorbs into portal at 85%-100% scroll
   const radiusMult = useTransform(
@@ -240,9 +218,11 @@ const RoamingCircle = ({
     [0.4, 1, 0]
   );
 
-  // Subtle Mouse Repulsion Shift
-  const mouseShiftX = mousePos.x * 0.3;
-  const mouseShiftY = mousePos.y * 0.3;
+  // Zero Re-render Mouse Repulsion Shift
+  const mouseShiftX = useTransform(mouseX, (x) => x * 0.3);
+  const mouseShiftY = useTransform(mouseY, (y) => y * 0.3);
+
+  const spinClass = spec.clockwise ? "animate-spin-cw-med" : "animate-spin-ccw-med";
 
   return (
     <motion.div
@@ -255,13 +235,9 @@ const RoamingCircle = ({
         x: mouseShiftX,
         y: mouseShiftY,
       }}
-      className="absolute pointer-events-none flex items-center justify-center z-15"
+      className="absolute pointer-events-none flex items-center justify-center z-15 will-change-transform"
     >
-      <motion.div
-        animate={{ rotate: spec.clockwise ? 360 : -360 }}
-        transition={{ duration: spec.duration, repeat: Infinity, ease: "linear" }}
-        className="w-full h-full relative flex items-center justify-start pointer-events-none"
-      >
+      <div className={`w-full h-full relative flex items-center justify-start pointer-events-none ${spinClass}`}>
         {/* Roaming Energy Node with 3D Depth Outer Ring & Glowing Core */}
         <div className="relative flex items-center justify-center -translate-x-1/2 -translate-y-1/2">
           {/* Fading Trailing Arc */}
@@ -270,12 +246,12 @@ const RoamingCircle = ({
             className="absolute right-full w-10 md:w-14 h-1 bg-gradient-to-l from-[#7CFF4F] to-transparent rounded-full opacity-65"
           />
           {/* Outer Energy Circle (14px) */}
-          <div className="w-3.5 h-3.5 md:w-4 md:h-4 rounded-full border border-[#7CFF4F] bg-[#7CFF4F]/10 shadow-[0_0_12px_#7CFF4F] flex items-center justify-center">
+          <div className="w-3.5 h-3.5 md:w-4 md:h-4 rounded-full border border-[#7CFF4F] bg-[#7CFF4F]/10 shadow-[0_0_10px_#7CFF4F] flex items-center justify-center">
             {/* Center Energy Point (3px) */}
-            <div className="w-1 h-1 rounded-full bg-[#7CFF4F] shadow-[0_0_6px_#7CFF4F]" />
+            <div className="w-1 h-1 rounded-full bg-[#7CFF4F] shadow-[0_0_5px_#7CFF4F]" />
           </div>
         </div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 };
@@ -290,7 +266,6 @@ const IrregularEnergyLoop = ({
   dashArray,
   strokeWidth = 1.5,
   baseOpacity = 0.5,
-  breathDelay = 0,
   collapseStart = 0.3,
   collapseEnd = 0.85,
   scrollYProgress,
@@ -303,7 +278,6 @@ const IrregularEnergyLoop = ({
   dashArray: string;
   strokeWidth?: number;
   baseOpacity?: number;
-  breathDelay?: number;
   collapseStart?: number;
   collapseEnd?: number;
   scrollYProgress: MotionValue<number>;
@@ -325,6 +299,14 @@ const IrregularEnergyLoop = ({
   const viewBoxSize = size + 40;
   const center = viewBoxSize / 2;
 
+  const spinClass = clockwise
+    ? duration <= 15
+      ? "animate-spin-cw-fast"
+      : duration <= 25
+      ? "animate-spin-cw-med"
+      : "animate-spin-cw-slow"
+    : "animate-spin-ccw-med";
+
   return (
     <motion.div
       style={{
@@ -335,31 +317,14 @@ const IrregularEnergyLoop = ({
         width: size,
         height: size,
       }}
-      className="absolute pointer-events-none flex items-center justify-center z-5"
+      className="absolute pointer-events-none flex items-center justify-center z-5 will-change-transform"
     >
-      {/* Ripple Breathing animation with staggered delay */}
-      <motion.div
-        animate={{
-          scale: [1, 1.035, 1],
-          opacity: [1, 0.82, 1],
-        }}
-        transition={{
-          duration: 3.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: breathDelay,
-        }}
-        className="w-full h-full relative flex items-center justify-center"
-      >
+      <div className="w-full h-full relative flex items-center justify-center">
         {/* Continuous Asynchronous Rotation Loop */}
-        <motion.div
-          animate={{ rotate: clockwise ? 360 : -360 }}
-          transition={{ duration, repeat: Infinity, ease: "linear" }}
-          className="w-full h-full relative flex items-center justify-center"
-        >
+        <div className={`w-full h-full relative flex items-center justify-center ${spinClass}`}>
           <svg
             viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
-            className="w-full h-full overflow-visible drop-shadow-[0_0_10px_#7CFF4F]"
+            className="w-full h-full overflow-visible"
           >
             <defs>
               <linearGradient
@@ -388,7 +353,7 @@ const IrregularEnergyLoop = ({
             />
 
             {/* Circumferential Energy Flow Pulse Arc along loop */}
-            <motion.circle
+            <circle
               cx={center}
               cy={center}
               r={radius}
@@ -397,17 +362,11 @@ const IrregularEnergyLoop = ({
               strokeWidth={strokeWidth + 0.8}
               strokeDasharray={`100 ${Math.max(100, 2 * Math.PI * radius - 100)}`}
               strokeLinecap="round"
-              animate={{ strokeDashoffset: [0, clockwise ? -2 * Math.PI * radius : 2 * Math.PI * radius] }}
-              transition={{
-                duration: duration * 0.5,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              className="opacity-90 drop-shadow-[0_0_12px_#7CFF4F]"
+              className="opacity-90"
             />
           </svg>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </motion.div>
   );
 };
@@ -415,36 +374,51 @@ const IrregularEnergyLoop = ({
 const HeroScene = () => {
   const { scrollYProgress } = useScroll();
 
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [stage, setStage] = useState(0);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const { innerWidth, innerHeight } = window;
-      const x = (e.clientX / innerWidth - 0.5) * 16;
-      const y = (e.clientY / innerHeight - 0.5) * 12;
-      setMousePos({ x, y });
-    };
+    const mobileCheck = window.innerWidth < 768;
+    setIsMobile(mobileCheck);
 
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     setPrefersReducedMotion(mediaQuery.matches);
-    setIsMobile(window.innerWidth < 768);
 
-    window.addEventListener("mousemove", handleMouseMove);
+    // Passive mouse listener without React state re-renders
+    const handleMouseMove = (e: MouseEvent) => {
+      if (mobileCheck) return;
+      const { innerWidth, innerHeight } = window;
+      const x = (e.clientX / innerWidth - 0.5) * 16;
+      const y = (e.clientY / innerHeight - 0.5) * 12;
+      mouseX.set(x);
+      mouseY.set(y);
+    };
 
-    const t1 = setTimeout(() => setStage(1), 300);
-    const t2 = setTimeout(() => setStage(2), 800);
-    const t3 = setTimeout(() => setStage(3), 1500);
+    if (!mobileCheck) {
+      window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    }
+
+    const t1 = setTimeout(() => setStage(1), 200);
+    const t2 = setTimeout(() => setStage(2), 600);
+    const t3 = setTimeout(() => setStage(3), 1200);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
+      if (!mobileCheck) {
+        window.removeEventListener("mousemove", handleMouseMove);
+      }
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
     };
-  }, []);
+  }, [mouseX, mouseY]);
+
+  // Deriving portal mouse tilt/shift without re-renders
+  const portalMouseX = useTransform(mouseX, (x) => x * 0.4);
+  const portalMouseY = useTransform(mouseY, (y) => y * 0.4);
 
   // 4-PHASE SCROLL TRANSFORMATION FOR CENTRAL PORTAL
   const portalScale = useTransform(
@@ -480,8 +454,8 @@ const HeroScene = () => {
     [0, 0.85, 0]
   );
 
-  // SYSTEM 1: Portal Energy Field Particles (42 desktop, 20 mobile)
-  const portalParticleCount = isMobile ? 20 : 42;
+  // SYSTEM 1: Portal Energy Field Particles (28 desktop, 12 mobile)
+  const portalParticleCount = isMobile ? 12 : 28;
   const portalParticles = useMemo<PortalParticleSpec[]>(() => {
     const colors = ["#7CFF4F", "#9DFF70", "#6EE7A0"];
     return Array.from({ length: portalParticleCount }).map((_, i) => {
@@ -514,17 +488,16 @@ const HeroScene = () => {
     });
   }, [portalParticleCount]);
 
-  // SYSTEM 2: Distant Falling Atmospheric Particles (28 desktop, 12 mobile)
-  const fallingParticleCount = isMobile ? 12 : 28;
+  // SYSTEM 2: Distant Falling Atmospheric Particles (18 desktop, 10 mobile)
+  const fallingParticleCount = isMobile ? 10 : 18;
   const fallingParticles = useMemo<FallingParticleSpec[]>(() => {
     return Array.from({ length: fallingParticleCount }).map((_, i) => {
       const layer: 0 | 1 | 2 = i % 5 === 0 ? 2 : i % 3 === 0 ? 0 : 1;
-      const x = (i * 3.4 + (i % 7) * 7.8) % 96 + 2;
+      const x = (i * 5.4 + (i % 7) * 7.8) % 96 + 2;
       const startY = -15 + ((i * 13) % 45);
       const duration = 15 + (i % 5) * 3.5;
       const delay = (i % 7) * 1.2;
-      const baseOpacity =
-        layer === 0 ? 0.18 : layer === 1 ? 0.35 : 0.5;
+      const baseOpacity = layer === 0 ? 0.18 : layer === 1 ? 0.35 : 0.5;
 
       return {
         id: i,
@@ -581,34 +554,21 @@ const HeroScene = () => {
         }}
       />
 
-      {/* Atmospheric Breathing Radial Green Glow */}
-      <motion.div
-        animate={{
-          scale: [1, 1.03, 1],
-          opacity: [0.25, 0.38, 0.25],
-        }}
-        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/2 left-1/2 w-[650px] h-[650px] md:w-[900px] md:h-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full"
+      {/* Atmospheric Breathing Radial Green Glow (ONE central glow, CSS opacity/scale) */}
+      <div
+        className="absolute top-1/2 left-1/2 w-[650px] h-[650px] md:w-[900px] md:h-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
         style={{
+          animation: "pulseOpacity 4s ease-in-out infinite",
           background:
-            "radial-gradient(circle, rgba(124, 255, 79, 0.16) 0%, rgba(124, 255, 79, 0.03) 45%, transparent 70%)",
+            "radial-gradient(circle, rgba(124, 255, 79, 0.14) 0%, rgba(124, 255, 79, 0.02) 45%, transparent 70%)",
         }}
       />
 
       {/* Periodic Expanding Circular Energy Wave */}
       {stage >= 2 && (
-        <motion.div
-          animate={{
-            scale: [0.5, 1.9],
-            opacity: [0.6, 0],
-          }}
-          transition={{
-            duration: 1.3,
-            repeat: Infinity,
-            repeatDelay: 4.5,
-            ease: "easeOut",
-          }}
-          className="absolute top-1/2 left-1/2 w-[400px] h-[400px] md:w-[540px] md:h-[540px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#7CFF4F]/40 pointer-events-none"
+        <div
+          style={{ animation: "energyPulseWave 1.4s ease-out infinite 4.5s" }}
+          className="absolute top-1/2 left-1/2 w-[400px] h-[400px] md:w-[540px] md:h-[540px] rounded-full border border-[#7CFF4F]/40 pointer-events-none"
         />
       )}
 
@@ -625,7 +585,7 @@ const HeroScene = () => {
 
       {/* Main Portal Container: UPRIGHT & VISUALLY STABLE */}
       <motion.div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none z-10"
+        className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 will-change-transform"
         style={{
           y: portalTranslateY,
           scale: portalScale,
@@ -646,7 +606,6 @@ const HeroScene = () => {
                 dashArray="60 20 110 30"
                 strokeWidth={1.5}
                 baseOpacity={0.55}
-                breathDelay={0}
                 collapseStart={0.35}
                 collapseEnd={0.85}
                 scrollYProgress={scrollYProgress}
@@ -662,7 +621,6 @@ const HeroScene = () => {
                 dashArray="80 30 140 40"
                 strokeWidth={1.2}
                 baseOpacity={0.45}
-                breathDelay={0.15}
                 collapseStart={0.3}
                 collapseEnd={0.75}
                 scrollYProgress={scrollYProgress}
@@ -678,7 +636,6 @@ const HeroScene = () => {
                 dashArray="40 25 120 40 90 20"
                 strokeWidth={1.0}
                 baseOpacity={0.35}
-                breathDelay={0.3}
                 collapseStart={0.25}
                 collapseEnd={0.65}
                 scrollYProgress={scrollYProgress}
@@ -694,7 +651,8 @@ const HeroScene = () => {
                   key={spec.id}
                   spec={spec}
                   scrollYProgress={scrollYProgress}
-                  mousePos={mousePos}
+                  mouseX={mouseX}
+                  mouseY={mouseY}
                 />
               ))}
             </div>
@@ -707,7 +665,8 @@ const HeroScene = () => {
                 key={spec.id}
                 spec={spec}
                 scrollYProgress={scrollYProgress}
-                mousePos={mousePos}
+                mouseX={mouseX}
+                mouseY={mouseY}
               />
             ))}
           </div>
@@ -718,14 +677,13 @@ const HeroScene = () => {
               scale: burstScale,
               opacity: burstOpacity,
             }}
-            className="absolute w-[360px] h-[360px] md:w-[480px] md:h-[480px] rounded-full border border-primary/50 shadow-[0_0_30px_#7CFF4F] pointer-events-none"
+            className="absolute w-[360px] h-[360px] md:w-[480px] md:h-[480px] rounded-full border border-primary/50 shadow-[0_0_20px_#7CFF4F] pointer-events-none"
           />
 
-          {/* CENTRAL INFOTHON 7.0 PORTAL BADGE (MUST REMAIN 100% STRAIGHT & UN-ROTATED) */}
+          {/* CENTRAL INFOTHON 7.0 PORTAL BADGE (PERFECTLY HORIZONTAL & READABLE) */}
           <motion.div
-            style={{ x: mousePos.x * 0.4, y: mousePos.y * 0.4 }}
-            transition={{ type: "spring", stiffness: 50, damping: 20 }}
-            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+            style={{ x: portalMouseX, y: portalMouseY }}
+            className="absolute inset-0 flex items-center justify-center pointer-events-none will-change-transform"
           >
             {/* Outer Upright Portal Frame Border */}
             {stage >= 1 && (
@@ -734,44 +692,44 @@ const HeroScene = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8 }}
                 style={{ opacity: borderPulseOpacity }}
-                className="absolute w-[360px] h-[360px] md:w-[480px] md:h-[480px] rounded-full border border-primary/35 shadow-[0_0_40px_rgba(124,255,79,0.22)] flex items-center justify-center"
+                className="absolute w-[360px] h-[360px] md:w-[480px] md:h-[480px] rounded-full border border-primary/35 shadow-[0_0_30px_rgba(124,255,79,0.22)] flex items-center justify-center"
               >
                 {/* Dash Ticks along border */}
                 <div className="absolute inset-0 rounded-full border border-dashed border-primary/25" />
               </motion.div>
             )}
 
-            {/* Moving Luminous Arc Sweep around border (does NOT rotate portal body) */}
+            {/* Moving Luminous Arc Sweep around border */}
             {stage >= 2 && (
-              <motion.svg
-                animate={{ rotate: 360 }}
-                transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
-                viewBox="0 0 400 400"
-                className="absolute w-[380px] h-[380px] md:w-[500px] md:h-[500px] pointer-events-none drop-shadow-[0_0_15px_#7CFF4F]"
-              >
-                <circle
-                  cx="200"
-                  cy="200"
-                  r="190"
-                  fill="none"
-                  stroke="url(#portalScanGradient)"
-                  strokeWidth="3"
-                  strokeDasharray="140 1050"
-                  strokeLinecap="round"
-                />
-                <defs>
-                  <linearGradient
-                    id="portalScanGradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%"
-                  >
-                    <stop offset="0%" stopColor="#7CFF4F" stopOpacity="1" />
-                    <stop offset="100%" stopColor="#7CFF4F" stopOpacity="0" />
-                  </linearGradient>
-                </defs>
-              </motion.svg>
+              <div className="absolute w-[380px] h-[380px] md:w-[500px] md:h-[500px] pointer-events-none animate-spin-cw-fast">
+                <svg
+                  viewBox="0 0 400 400"
+                  className="w-full h-full"
+                >
+                  <circle
+                    cx="200"
+                    cy="200"
+                    r="190"
+                    fill="none"
+                    stroke="url(#portalScanGradient)"
+                    strokeWidth="3"
+                    strokeDasharray="140 1050"
+                    strokeLinecap="round"
+                  />
+                  <defs>
+                    <linearGradient
+                      id="portalScanGradient"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="100%"
+                    >
+                      <stop offset="0%" stopColor="#7CFF4F" stopOpacity="1" />
+                      <stop offset="100%" stopColor="#7CFF4F" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
             )}
 
             {/* Inner Stationary Hexagonal Geometry (NEVER ROTATES) */}
@@ -780,7 +738,7 @@ const HeroScene = () => {
                 initial={{ opacity: 0, scale: 0.85 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8 }}
-                className="absolute w-[240px] h-[240px] md:w-[320px] md:h-[320px] rounded-full border border-primary/25 shadow-[0_0_20px_rgba(124,255,79,0.12)] flex items-center justify-center"
+                className="absolute w-[240px] h-[240px] md:w-[320px] md:h-[320px] rounded-full border border-primary/25 shadow-[0_0_15px_rgba(124,255,79,0.12)] flex items-center justify-center"
               >
                 <div className="w-full h-full rounded-3xl border border-primary/15 rotate-45" />
                 <div className="w-full h-full rounded-3xl border border-primary/15 -rotate-45 absolute" />
@@ -793,13 +751,13 @@ const HeroScene = () => {
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6 }}
-                className="w-44 h-44 md:w-64 md:h-64 rounded-3xl border border-primary/40 bg-[#050907]/85 shadow-[0_0_45px_rgba(124,255,79,0.28)] backdrop-blur-md flex flex-col items-center justify-center p-4"
+                className="w-44 h-44 md:w-64 md:h-64 rounded-3xl border border-primary/40 bg-[#050907]/85 shadow-[0_0_35px_rgba(124,255,79,0.28)] backdrop-blur-md flex flex-col items-center justify-center p-4"
               >
                 <div className="w-32 h-32 md:w-48 md:h-48 border border-primary/60 rounded-2xl flex flex-col items-center justify-center bg-primary/5 p-2 text-center">
                   <span className="font-mono text-[9px] md:text-[11px] font-semibold text-primary/80 tracking-[0.25em] mb-1">
                     WELCOME TO
                   </span>
-                  <span className="font-mono text-sm md:text-xl font-extrabold text-primary tracking-[0.3em] drop-shadow-[0_0_12px_#7CFF4F]">
+                  <span className="font-mono text-sm md:text-xl font-extrabold text-primary tracking-[0.3em] drop-shadow-[0_0_10px_#7CFF4F]">
                     INFOTHON 7.0
                   </span>
                   
@@ -807,36 +765,18 @@ const HeroScene = () => {
                   <div className="w-10 h-[1.5px] bg-gradient-to-r from-transparent via-primary/50 to-transparent my-2" />
 
                   {/* Futuristic Digital Status Indicator: ● ONLINE */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.25, duration: 0.5, ease: "easeOut" }}
-                    className="flex items-center justify-center gap-1.5"
-                  >
-                    {/* Soft Pulsing Status Dot */}
-                    <motion.div
-                      animate={{
-                        scale: [1, 1.35, 1],
-                        opacity: [0.45, 1, 0.45],
-                        boxShadow: [
-                          "0 0 4px #7CFF4F",
-                          "0 0 10px #7CFF4F",
-                          "0 0 4px #7CFF4F",
-                        ],
-                      }}
-                      transition={{
-                        duration: 2.0,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                      className="w-1.5 h-1.5 rounded-full bg-[#7CFF4F]"
+                  <div className="flex items-center justify-center gap-1.5">
+                    {/* Pulsing Status Dot */}
+                    <div
+                      style={{ animation: "pulseOpacity 2s ease-in-out infinite" }}
+                      className="w-1.5 h-1.5 rounded-full bg-[#7CFF4F] shadow-[0_0_6px_#7CFF4F]"
                     />
 
                     {/* Clean Geometric "ONLINE" Label */}
-                    <span className="font-mono text-[9px] md:text-[11px] font-light text-primary/75 tracking-[0.38em] uppercase drop-shadow-[0_0_6px_rgba(124,255,79,0.4)] pl-0.5">
+                    <span className="font-mono text-[9px] md:text-[11px] font-light text-primary/75 tracking-[0.38em] uppercase pl-0.5">
                       ONLINE
                     </span>
-                  </motion.div>
+                  </div>
                 </div>
               </motion.div>
             )}
@@ -845,20 +785,12 @@ const HeroScene = () => {
           {/* Digital Telemetry HUD Overlay */}
           {stage >= 3 && (
             <>
-              <motion.div
-                animate={{ opacity: [0.3, 0.9, 0.3] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-8 left-8 font-mono text-[9px] text-primary/70 tracking-widest hidden sm:block pointer-events-none"
-              >
+              <div className="absolute bottom-8 left-8 font-mono text-[9px] text-primary/70 tracking-widest hidden sm:block pointer-events-none animate-pulse">
                 01 // INFOTHON_GATEWAY
-              </motion.div>
-              <motion.div
-                animate={{ opacity: [0.2, 0.8, 0.2] }}
-                transition={{ duration: 4.5, delay: 1, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-8 right-8 font-mono text-[9px] text-primary/70 tracking-widest hidden sm:block pointer-events-none"
-              >
+              </div>
+              <div className="absolute top-8 right-8 font-mono text-[9px] text-primary/70 tracking-widest hidden sm:block pointer-events-none animate-pulse">
                 07 // ROAMING_NODES_ACTIVE
-              </motion.div>
+              </div>
             </>
           )}
         </div>
