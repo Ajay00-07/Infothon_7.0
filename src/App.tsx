@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import BackgroundEffects from "@/components/BackgroundEffects";
+import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 
 // Lazy loading secondary routes to reduce initial JS payload size
@@ -63,6 +64,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <BackgroundEffects />
         <Navbar />
         <AnimatedRoutes />
