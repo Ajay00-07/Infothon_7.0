@@ -515,24 +515,8 @@ const HeroScene = () => {
     });
   }, [fallingParticleCount]);
 
-  // SYSTEM 3: 2–3 Independent Roaming Energy Circles (3 desktop, 2 mobile)
-  const roamingCircles = useMemo<RoamingCircleSpec[]>(() => {
-    const specs: RoamingCircleSpec[] = [
-      { id: 1, radiusX: 260, radiusY: 190, duration: 24, clockwise: true, tiltAngle: 0 },
-      { id: 2, radiusX: 190, radiusY: 130, duration: 16, clockwise: false, tiltAngle: 15 },
-    ];
-    if (!isMobile) {
-      specs.push({
-        id: 3,
-        radiusX: 220,
-        radiusY: 150,
-        duration: 20,
-        clockwise: true,
-        tiltAngle: -25,
-      });
-    }
-    return specs;
-  }, [isMobile]);
+  // SYSTEM 3: Concentric Portal Focus (No off-center roaming circles)
+  const roamingCircles = useMemo<RoamingCircleSpec[]>(() => [], []);
 
   if (prefersReducedMotion) {
     return (
@@ -564,13 +548,7 @@ const HeroScene = () => {
         }}
       />
 
-      {/* Periodic Expanding Circular Energy Wave */}
-      {stage >= 2 && (
-        <div
-          style={{ animation: "energyPulseWave 1.4s ease-out infinite 4.5s" }}
-          className="absolute top-1/2 left-1/2 w-[400px] h-[400px] md:w-[540px] md:h-[540px] rounded-full border border-[#7CFF4F]/40 pointer-events-none"
-        />
-      )}
+
 
       {/* SYSTEM 2: DISTANT ATMOSPHERIC FALLING PARTICLES */}
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -616,28 +594,13 @@ const HeroScene = () => {
                 radius={isMobile ? 180 : 250}
                 duration={20}
                 clockwise={false}
-                tiltX={8}
+                tiltX={0}
                 tiltY={0}
                 dashArray="80 30 140 40"
                 strokeWidth={1.2}
                 baseOpacity={0.45}
                 collapseStart={0.3}
                 collapseEnd={0.75}
-                scrollYProgress={scrollYProgress}
-              />
-
-              {/* Loop 3: Outer Energy Loop (~340px) */}
-              <IrregularEnergyLoop
-                radius={isMobile ? 240 : 340}
-                duration={30}
-                clockwise={true}
-                tiltX={18}
-                tiltY={10}
-                dashArray="40 25 120 40 90 20"
-                strokeWidth={1.0}
-                baseOpacity={0.35}
-                collapseStart={0.25}
-                collapseEnd={0.65}
                 scrollYProgress={scrollYProgress}
               />
             </div>
@@ -699,38 +662,6 @@ const HeroScene = () => {
               </motion.div>
             )}
 
-            {/* Moving Luminous Arc Sweep around border */}
-            {stage >= 2 && (
-              <div className="absolute w-[380px] h-[380px] md:w-[500px] md:h-[500px] pointer-events-none animate-spin-cw-fast">
-                <svg
-                  viewBox="0 0 400 400"
-                  className="w-full h-full"
-                >
-                  <circle
-                    cx="200"
-                    cy="200"
-                    r="190"
-                    fill="none"
-                    stroke="url(#portalScanGradient)"
-                    strokeWidth="3"
-                    strokeDasharray="140 1050"
-                    strokeLinecap="round"
-                  />
-                  <defs>
-                    <linearGradient
-                      id="portalScanGradient"
-                      x1="0%"
-                      y1="0%"
-                      x2="100%"
-                      y2="100%"
-                    >
-                      <stop offset="0%" stopColor="#7CFF4F" stopOpacity="1" />
-                      <stop offset="100%" stopColor="#7CFF4F" stopOpacity="0" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-            )}
 
             {/* Inner Stationary Hexagonal Geometry (NEVER ROTATES) */}
             {stage >= 1 && (

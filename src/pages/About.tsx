@@ -5,11 +5,24 @@ import Footer from "@/components/Footer";
 import { ImageIcon, X } from "lucide-react";
 
 const gallery = [
-  { src: "/gallery/g1.jpg" },
-  { src: "/gallery/g2.jpg" },
-  { src: "/gallery/g3.jpg" },
-  { src: "/gallery/g4.jpg" },
-  { src: "/gallery/g5.jpg" },
+  { src: "/gallery/g1.jpg", alt: "Infothon hackathon keynote presentation" },
+  { src: "/gallery/g2.jpg", alt: "Hackathon team collaboration and development" },
+  { src: "/gallery/g3.jpg", alt: "Infothon inaugural ceremony and dignitaries" },
+  { src: "/gallery/g4.jpg", alt: "Students working on hardware prototype project" },
+  { src: "/gallery/g5.jpg", alt: "Team presenting innovation to hackathon judges" },
+  { src: "/gallery/g6.jpg", alt: "Infothon inauguration keynote address" },
+  { src: "/gallery/g7.jpg", alt: "Infothon organizers and participant group photo" },
+  { src: "/gallery/g8.jpg", alt: "Traditional lamp lighting inauguration ceremony" },
+  { src: "/gallery/g9.jpg", alt: "Participants assembling robotics hardware solution" },
+  { src: "/gallery/g10.jpg", alt: "Team presenting hardware project to evaluation panel" },
+  { src: "/gallery/g11.jpg", alt: "Infothon valedictory and award distribution ceremony" },
+  { src: "/gallery/g12.jpg", alt: "Participant demonstrating VR application with headset and controllers" },
+  { src: "/gallery/g13.jpg", alt: "Inauguration stage ceremony with INFOTHON backdrop" },
+  { src: "/gallery/g14.jpg", alt: "Mentors and judges evaluating project proposals" },
+  { src: "/gallery/g15.jpg", alt: "Student developers collaborating on code during hackathon" },
+  { src: "/gallery/g16.jpg", alt: "Participants in deep technical discussion and strategy session" },
+  { src: "/gallery/g17.jpg", alt: "Infothon event venue atmosphere and banner display" },
+  { src: "/gallery/g18.jpg", alt: "Infothon hackathon winning team receiving trophy at awards ceremony" },
 ];
 
 const teams = [
@@ -238,12 +251,12 @@ const About = () => {
 
         {/* Gallery */}
         <SectionHeading title="Gallery" subtitle="Moments from past editions" />
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 max-w-4xl mx-auto mb-24">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 max-w-5xl mx-auto mb-24">
           {gallery.map((item, i) => (
             <motion.div
               key={i}
               {...stagger}
-              transition={{ delay: i * 0.08 }}
+              transition={{ delay: (i % 5) * 0.05 }}
               onClick={() => setSelectedImage(item.src)}
               className="glass-card hover:neon-border transition-all duration-300 group overflow-hidden relative aspect-square rounded-2xl cursor-pointer"
             >
@@ -251,7 +264,8 @@ const About = () => {
                 <>
                   <img
                     src={item.src}
-                    alt={`Gallery item ${i + 1}`}
+                    alt={item.alt || `Gallery item ${i + 1}`}
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

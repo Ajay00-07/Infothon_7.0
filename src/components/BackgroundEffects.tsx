@@ -8,12 +8,7 @@ const BackgroundEffects = () => {
           background: "radial-gradient(circle, hsl(var(--primary) / 0.15) 0%, hsl(var(--primary) / 0.05) 40%, transparent 70%)",
         }}
       />
-      <div
-        className="absolute w-[250px] h-[250px] rounded-full left-[80%] top-[60%] opacity-15 pointer-events-none"
-        style={{
-          background: "radial-gradient(circle, hsl(var(--primary) / 0.15) 0%, hsl(var(--primary) / 0.05) 40%, transparent 70%)",
-        }}
-      />
+
       <div
         className="absolute w-[350px] h-[350px] rounded-full left-[30%] top-[50%] opacity-10 pointer-events-none"
         style={{

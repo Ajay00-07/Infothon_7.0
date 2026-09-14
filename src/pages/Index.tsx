@@ -39,14 +39,20 @@ const Index = () => {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 z-0 bg-cyber-grid opacity-30 pointer-events-none" />
         <div className="relative z-10 text-center px-4 w-full max-w-4xl mx-auto">
+          {/* Hero Branding Hierarchy */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-primary/35 bg-[#050907]/70 backdrop-blur-md text-primary font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-6 shadow-[0_0_20px_rgba(124,255,79,0.18)]"
+            className="flex flex-col items-center gap-2 mb-6"
           >
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#7CFF4F]" />
-            INFORMATION SCIENCE AND ENGINEERING PRESENTS
+            <div className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full border border-primary/35 bg-[#050907]/80 backdrop-blur-md text-primary font-mono text-[11px] md:text-xs font-bold uppercase tracking-[0.22em] shadow-[0_0_18px_rgba(124,255,79,0.18)]">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#7CFF4F]" />
+              VIDYA VARDHAKA COLLEGE OF ENGINEERING
+            </div>
+            <div className="text-primary/85 font-mono text-[10px] md:text-xs font-semibold uppercase tracking-[0.20em]">
+              DEPT. OF INFORMATION SCIENCE AND ENGINEERING PRESENTS
+            </div>
           </motion.div>
 
           <motion.div
