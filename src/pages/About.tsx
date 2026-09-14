@@ -17,8 +17,8 @@ const teams = [
     label: "Faculty Coordinators",
     isFaculty: true,
     members: [
-      { name: "Prof. Manjesh R", role: "Faculty Coordinator", initials: "FC" },
       { name: "Dr. R Kasturi Rangan", role: "Faculty Coordinator", initials: "FC" },
+      { name: "Prof. Manjesh R", role: "Faculty Coordinator", initials: "FC" },
     ],
   },
   {

@@ -794,8 +794,8 @@ const Problems = () => {
           </div>
 
           <a
-            href="/templates/Infothon_7.0_PPT_Template.pptx"
-            download="Infothon_7.0_PPT_Template.pptx"
+            href="/templates/Infothon_7.0_Reference_Template.pptx"
+            download="Infothon_7.0_Reference_Template.pptx"
             className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#050907]/60 backdrop-blur-md border border-primary/30 text-primary font-mono text-xs font-bold uppercase tracking-wider hover:border-primary/70 hover:bg-primary/10 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(124,255,79,0.3)] transition-all duration-300 w-full sm:w-auto"
           >
             <Download className="w-4 h-4 text-primary" />

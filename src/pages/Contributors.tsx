@@ -18,7 +18,7 @@ const contributorEditions = [
   },
   {
     edition: "Infothon 4.0",
-    members: ["Aishwarya Deepak Prajwal GS", "Amit D Jain", "Priyadarshani Sarja"],
+    members: ["Aishwarya Deepak", "Prajwal GS", "Amit D Jain", "Priyadarshani Sarja"],
   },
   {
     edition: "Infothon 5.0",

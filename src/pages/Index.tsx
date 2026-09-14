@@ -46,7 +46,7 @@ const Index = () => {
             className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-primary/35 bg-[#050907]/70 backdrop-blur-md text-primary font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-6 shadow-[0_0_20px_rgba(124,255,79,0.18)]"
           >
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#7CFF4F]" />
-            Dept. of ISE Presents
+            INFORMATION SCIENCE AND ENGINEERING PRESENTS
           </motion.div>
 
           <motion.div

@@ -39,19 +39,28 @@ const Navbar = () => {
         }`}
       >
 
-        {/* Logo — visible on ALL screen sizes */}
-        <div className="flex items-center gap-3 flex-shrink-0">
-          <Link to="/" className="flex items-center gap-2 group">
+        {/* Logos — visible on ALL screen sizes */}
+        <div className="flex items-center gap-1.5 sm:gap-2.5 flex-shrink-0">
+          <Link to="/" className="flex items-center gap-1.5 sm:gap-2.5 group">
+            {/* 1. Existing Infothon 7.0 Logo */}
             <img
               src="/logo.png"
               alt="Infothon 7.0 Logo"
-              className="h-9 w-auto object-contain rounded-lg border border-primary/30 group-hover:border-primary/60 transition-all duration-300 drop-shadow-[0_0_12px_rgba(124,255,79,0.5)]"
+              className="h-7 sm:h-8 md:h-9 w-auto object-contain rounded-lg border border-primary/30 group-hover:border-primary/60 transition-all duration-300 drop-shadow-[0_0_12px_rgba(124,255,79,0.5)]"
+            />
+            <div className="w-px h-5 sm:h-6 bg-white/15" />
+            {/* 2. Existing VVCE & ISE Logos */}
+            <img src="/34.png" alt="VVCE Logo" className="h-6 sm:h-7 md:h-8 w-auto opacity-80 rounded object-contain" />
+            <div className="w-px h-5 sm:h-6 bg-white/15" />
+            <img src="/23.png" alt="ISE Logo" className="h-6 sm:h-7 md:h-8 w-auto opacity-80 rounded object-contain" />
+            <div className="w-px h-5 sm:h-6 bg-white/15" />
+            {/* 3. New Uploaded ISE Emblem Logo */}
+            <img
+              src="/ise_logo.jpeg"
+              alt="Information Science and Engineering Emblem Logo"
+              className="h-6 sm:h-7 md:h-8 w-auto object-contain rounded transition-all duration-300 opacity-90 group-hover:opacity-100"
             />
           </Link>
-          <div className="w-px h-6 bg-white/15" />
-          <img src="/34.png" alt="VVCE" className="h-8 w-auto opacity-80 rounded object-contain" />
-          <div className="w-px h-6 bg-white/15" />
-          <img src="/23.png" alt="ISE" className="h-8 w-auto opacity-80 rounded object-contain" />
         </div>
 
 
