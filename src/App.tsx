@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import BackgroundEffects from "@/components/BackgroundEffects";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -30,15 +30,45 @@ const PageLoader = () => (
 
 const AnimatedRoutes = () => {
   const location = useLocation();
+  const shouldReduceMotion = useReducedMotion();
+
+  const pageVariants = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
+  };
+
+  const pageTransition = {
+    duration: shouldReduceMotion ? 0.01 : 0.35,
+    ease: "easeInOut",
+  };
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence
+      mode="wait"
+      onExitComplete={() => {
+        if ("scrollRestoration" in window.history) {
+          window.history.scrollRestoration = "manual";
+        }
+        if (!window.location.hash) {
+          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        } else {
+          const id = window.location.hash.replace("#", "");
+          const element = document.getElementById(id);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      }}
+    >
       <motion.div
         key={location.pathname}
-        initial={{ opacity: 0.9, y: 6 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0.9, y: -6 }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={pageVariants}
+        transition={pageTransition}
+        className="w-full"
       >
         <Suspense fallback={<PageLoader />}>
           <Routes location={location}>
