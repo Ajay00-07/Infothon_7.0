@@ -48,10 +48,10 @@ const Index = () => {
           >
             <div className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full border border-primary/35 bg-[#050907]/80 backdrop-blur-md text-primary font-mono text-[11px] md:text-xs font-bold uppercase tracking-[0.22em] shadow-[0_0_18px_rgba(124,255,79,0.18)]">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#7CFF4F]" />
-              VIDYA VARDHAKA COLLEGE OF ENGINEERING
+              VIDYAVARDHAKA COLLEGE OF ENGINEERING
             </div>
             <div className="text-primary/85 font-mono text-[10px] md:text-xs font-semibold uppercase tracking-[0.20em]">
-              DEPT. OF INFORMATION SCIENCE AND ENGINEERING PRESENTS
+              DEPARTMENT OF INFORMATION SCIENCE AND ENGINEERING PRESENTS
             </div>
           </motion.div>
 
@@ -76,7 +76,7 @@ const Index = () => {
           >
             <div className="px-6 py-2.5 rounded-full border border-primary/20 bg-[#050907]/60 backdrop-blur-sm shadow-[0_0_15px_rgba(124,255,79,0.06)]">
               <p className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-foreground/90 font-medium">
-                Architecting an Autonomous Tomorrow.
+                Architecting an Autonomous Tomorrow
               </p>
             </div>
           </motion.div>
@@ -370,7 +370,7 @@ const Index = () => {
 
               <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                 An autonomous institute affiliated with Visvesvaraya Technological University (VTU), Belagavi, approved by AICTE & UGC, New Delhi. Accredited by NAAC with an{" "}
-                <span className="text-primary font-semibold">"A" grade</span> and seven UG programs accredited by NBA. With{" "}
+                <span className="text-primary font-semibold">"A" grade</span> and 6 courses accredited by NBA. With{" "}
                 <span className="text-foreground/90 font-medium">3200+ students</span>, nine PhD research centers, and a passionate faculty team dedicated to world-class education.
               </p>
 
