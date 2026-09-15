@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 
+import { ReactNode } from "react";
+
 interface SectionHeadingProps {
   title: string;
-  subtitle?: string;
+  subtitle?: ReactNode;
 }
 
 const SectionHeading = ({ title, subtitle }: SectionHeadingProps) => (
