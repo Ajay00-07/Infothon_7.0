@@ -42,14 +42,7 @@ const Contributors = () => {
       <div className="container mx-auto px-4 py-12 flex-1 max-w-4xl">
         <SectionHeading
           title="CONTRIBUTORS"
-          subtitle={
-            <>
-              Honoring the coordinators and contributors from previous editions of Infothon at{" "}
-              <span className="font-bold text-base md:text-lg text-foreground">
-                Vidyavardhaka College of Engineering
-              </span>
-            </>
-          }
+          subtitle="Honoring the coordinators and contributors from previous editions of Infothon"
         />
 
         {/* Appreciation for Previous Seniors */}
@@ -70,11 +63,7 @@ const Contributors = () => {
           </div>
 
           <p className="text-foreground/90 text-sm md:text-base leading-relaxed">
-            Every edition of Infothon at{" "}
-            <span className="font-bold text-base md:text-lg text-foreground">
-              Vidyavardhaka College of Engineering
-            </span>{" "}
-            has been shaped by seniors who took the initiative to dream bigger, organize better, and create opportunities for the students who followed. Their dedication, leadership, creativity, and countless hours of effort helped transform Infothon from an event into a growing tradition.
+            Every edition of Infothon has been shaped by seniors who took the initiative to dream bigger, organize better, and create opportunities for the students who followed. Their dedication, leadership, creativity, and countless hours of effort helped transform Infothon from an event into a growing tradition.
           </p>
 
           <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">

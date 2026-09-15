@@ -46,7 +46,7 @@ const Index = () => {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="flex flex-col items-center gap-2.5 mb-6"
           >
-            <div className="inline-flex items-center gap-2 sm:gap-2.5 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full border border-primary/35 bg-[#050907]/80 backdrop-blur-md text-primary font-mono text-xs sm:text-sm md:text-base font-bold uppercase tracking-[0.18em] sm:tracking-[0.22em] shadow-[0_0_18px_rgba(124,255,79,0.18)] max-w-full text-center">
+            <div className="inline-flex items-center gap-2 sm:gap-2.5 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full border border-primary/35 bg-[#050907]/80 backdrop-blur-md text-primary font-mono text-sm sm:text-base md:text-lg font-bold uppercase tracking-[0.18em] sm:tracking-[0.22em] shadow-[0_0_18px_rgba(124,255,79,0.18)] max-w-full text-center">
               <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#7CFF4F] flex-shrink-0" />
               <span>VIDYAVARDHAKA COLLEGE OF ENGINEERING</span>
             </div>
