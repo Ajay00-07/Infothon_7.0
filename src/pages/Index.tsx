@@ -94,7 +94,13 @@ const Index = () => {
               asChild
               className="h-14 px-10 rounded-2xl bg-[#050907]/70 backdrop-blur-md border border-primary/40 text-primary font-display font-extrabold text-sm md:text-base tracking-wider uppercase shadow-[0_0_24px_rgba(124,255,79,0.25)] hover:border-primary hover:bg-[#050907]/90 hover:-translate-y-1 hover:shadow-[0_0_36px_rgba(124,255,79,0.5)] active:scale-95 transition-all duration-300"
             >
-              <Link to="/register">Register Now</Link>
+              <a
+                href="https://unstop.com/o/aMWPD3T?lb=oDUR4wu8&utm_medium=Share&utm_source=infotise5672&utm_campaign=Online_coding_challenge"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Register Now
+              </a>
             </Button>
             <Button
               size="lg"

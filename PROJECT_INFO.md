@@ -15,7 +15,7 @@ This document provides a comprehensive technical and functional overview of the 
   - **24th October**: Offline Hackathon
 - **Prize Pool**: ₹40,000
 - **Venue**: VVCE Sports Complex, Mysuru
-- **Primary Goal**: Showcase event details, problem statements, shortlisted teams (Coming Soon), previous edition contributors, sponsorship tiers, registration portal (Updating Soon), and contact information.
+- **Primary Goal**: Showcase event details, problem statements, shortlisted teams (Coming Soon), previous edition contributors, sponsorship tiers, registration portal (Official Unstop Registration), and contact information.
 - **Design Persona**: Futuristic dark-themed cyberpunk UI with **Parrot Green / Neon Green (`#7CFF00` / `hsl(91 100% 50%)`)** accents, glassmorphism containers, and interactive 3D scroll animations.
 
 ---
@@ -71,7 +71,7 @@ Infothon_7.0/
 │   │   ├── Contributors.tsx    # Previous Infothon Edition Contributors 1.0–6.0 (`/contributors`)
 │   │   ├── Sponsors.tsx        # Sponsor Benefits, Tiers & Inquiry Form (`/sponsors`)
 │   │   ├── Contact.tsx         # Infothon 7.0 Contact Info, Map, Socials (`/contact`)
-│   │   ├── Register.tsx        # Registration Updating Soon Page (`/register`)
+│   │   ├── Register.tsx        # Official Unstop Registration Page (`/register`)
 │   │   └── NotFound.tsx       # 404 Fallback Page (`*`)
 │   ├── App.css                 # Application-specific CSS
 │   ├── App.tsx                 # Root Router & Query Provider setup
@@ -100,7 +100,7 @@ The application uses **React Router DOM v6** for client-side routing. Below are 
 | `/contributors` | `src/pages/Contributors.tsx` | Previous edition contributors & coordinators for Infothon 1.0 through 6.0. |
 | `/sponsors` | `src/pages/Sponsors.tsx` | Sponsorship tiers (Platinum, Gold, Silver), value proposition, and sponsor contact inquiry form. |
 | `/contact` | `src/pages/Contact.tsx` | Infothon 7.0 contacts (Sukrutha K, Vasudev S, Ajay Kumar R, Abhinav C), email, location map, socials. |
-| `/register` | `src/pages/Register.tsx` | Registration Updating Soon page. |
+| `/register` | `src/pages/Register.tsx` | Official Unstop Registration page. |
 | `/results` | `src/pages/Results.jsx` | Shortlisted Teams Coming Soon page. |
 | `*` | `src/pages/NotFound.tsx` | 404 Page for undefined routes. |
 

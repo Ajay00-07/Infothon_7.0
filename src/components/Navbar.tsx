@@ -87,12 +87,14 @@ const Navbar = () => {
               </Link>
             );
           })}
-          <Link
-            to="/register"
+          <a
+            href="https://unstop.com/o/aMWPD3T?lb=oDUR4wu8&utm_medium=Share&utm_source=infotise5672&utm_campaign=Online_coding_challenge"
+            target="_blank"
+            rel="noopener noreferrer"
             className="ml-4 px-5 py-2 rounded-full text-xs font-bold tracking-[0.15em] uppercase text-background gradient-primary shadow-[0_0_16px_rgba(124,255,79,0.4)] hover:shadow-[0_0_28px_rgba(124,255,79,0.7)] active:scale-95 transition-all duration-300"
           >
             Register
-          </Link>
+          </a>
         </div>
 
         {/* Mobile toggle */}
@@ -144,13 +146,15 @@ const Navbar = () => {
                   </Link>
                 );
               })}
-              <Link
-                to="/register"
+              <a
+                href="https://unstop.com/o/aMWPD3T?lb=oDUR4wu8&utm_medium=Share&utm_source=infotise5672&utm_campaign=Online_coding_challenge"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
                 className="mt-3 text-center py-2.5 rounded-full text-xs font-bold tracking-widest uppercase text-background gradient-primary shadow-[0_0_16px_rgba(124,255,79,0.4)]"
               >
                 Register
-              </Link>
+              </a>
             </div>
           </motion.div>
         )}
