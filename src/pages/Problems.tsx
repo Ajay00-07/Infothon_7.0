@@ -2,6 +2,7 @@ import { useState, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionHeading from "@/components/SectionHeading";
 import Footer from "@/components/Footer";
+import CountdownTimer from "@/components/CountdownTimer";
 import { Button } from "@/components/ui/button";
 import {
   Bot,
@@ -781,8 +782,14 @@ const Problems = () => {
           subtitle="Explore the complete problem statement repository across Agentic AI and Sustainable Development Goals"
         />
 
-        {/* Action Header & Download PPT Template Button */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10 bg-card/60 p-4 md:p-6 rounded-2xl border border-primary/20 backdrop-blur-md">
+        {/* Live Submission Countdown Timer */}
+        <div className="mb-10">
+          <CountdownTimer />
+        </div>
+
+        {/* Action Header & Mandatory PPT Template Download Section */}
+        <div className="flex flex-col gap-6 mb-10 bg-card/60 p-4 md:p-6 rounded-2xl border border-primary/20 backdrop-blur-md">
+          {/* Problem Portfolio Header */}
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center text-primary">
               <Sparkles className="w-5 h-5" />
@@ -793,14 +800,47 @@ const Problems = () => {
             </div>
           </div>
 
-          <a
-            href="/templates/Infothon_7.0_Reference_Template.pptx"
-            download="Infothon_7.0_Reference_Template.pptx"
-            className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#050907]/60 backdrop-blur-md border border-primary/30 text-primary font-mono text-xs font-bold uppercase tracking-wider hover:border-primary/70 hover:bg-primary/10 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(124,255,79,0.3)] transition-all duration-300 w-full sm:w-auto"
-          >
-            <Download className="w-4 h-4 text-primary" />
-            <span>DOWNLOAD PPT TEMPLATE</span>
-          </a>
+          {/* Mandatory PPT Warning & Download Action Card */}
+          <div className="p-4 md:p-5 rounded-xl bg-amber-500/10 border border-amber-500/35 backdrop-blur-md shadow-[0_0_24px_rgba(245,158,11,0.15)] space-y-4">
+            <div className="flex items-start gap-3">
+              <div className="w-9 h-9 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 flex-shrink-0 mt-0.5">
+                <AlertTriangle className="w-5 h-5 text-amber-400 animate-pulse" />
+              </div>
+              <div className="space-y-2 flex-1">
+                <div className="flex items-center gap-2">
+                  <h4 className="font-mono text-xs md:text-sm font-extrabold uppercase tracking-wider text-amber-400">
+                    ⚠️ OFFICIAL PPT TEMPLATE IS <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40">MANDATORY</span>
+                  </h4>
+                </div>
+                <div className="text-xs md:text-sm text-amber-200/90 leading-relaxed space-y-1.5">
+                  <p>
+                    All teams <strong className="text-amber-300 font-bold uppercase">MUST</strong> use the official PPT template provided by Infothon 7.0 for their presentation.
+                  </p>
+                  <p>
+                    During the PPT evaluation, teams that do not use the official template will be{" "}
+                    <strong className="text-amber-300 font-extrabold uppercase px-1.5 py-0.5 rounded bg-amber-500/20 border border-amber-400/40 text-amber-200">
+                      ELIMINATED IN THE FIRST STAGE
+                    </strong>{" "}
+                    itself, regardless of how good, creative, or technically strong their PPT is.
+                  </p>
+                  <p className="font-mono text-[11px] md:text-xs text-amber-400/90 font-semibold uppercase tracking-wider">
+                    • No exceptions.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-1 flex justify-start sm:justify-end">
+              <a
+                href="/templates/Infothon_7.0_Reference_Template.pptx"
+                download="Infothon_7.0_Reference_Template.pptx"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-xl bg-[#050907]/80 backdrop-blur-md border border-amber-500/50 text-amber-300 font-mono text-xs font-bold uppercase tracking-wider hover:border-amber-400 hover:bg-amber-500/20 hover:text-amber-200 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(245,158,11,0.35)] transition-all duration-300 w-full sm:w-auto"
+              >
+                <Download className="w-4 h-4 text-amber-400" />
+                <span>DOWNLOAD OFFICIAL PPT TEMPLATE</span>
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Track Selection Tabs & Search Bar */}

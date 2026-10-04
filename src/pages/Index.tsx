@@ -5,6 +5,7 @@ import HeroScene from "@/components/HeroScene";
 import SectionHeading from "@/components/SectionHeading";
 import EventFlowSection from "@/components/EventFlowSection";
 import Footer from "@/components/Footer";
+import CountdownTimer from "@/components/CountdownTimer";
 import { Clock, Users, Trophy, Zap, Lightbulb, Handshake, Calendar, CheckCircle, Send, Star, Compass } from "lucide-react";
 
 const fadeUp = {
@@ -109,6 +110,16 @@ const Index = () => {
             >
               <Link to="/problems">View Problem Statements</Link>
             </Button>
+          </motion.div>
+
+          {/* Submission Deadline Countdown Timer */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.0, duration: 0.6 }}
+            className="mt-6"
+          >
+            <CountdownTimer />
           </motion.div>
         </div>
       </section>
