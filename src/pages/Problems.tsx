@@ -935,9 +935,6 @@ const Problems = () => {
                       {problem.category}
                     </span>
                   </div>
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-primary/30 text-primary bg-primary/10">
-                    {problem.difficulty}
-                  </span>
                 </div>
 
                 {/* SDG Tag if present */}

@@ -6,7 +6,7 @@ import SectionHeading from "@/components/SectionHeading";
 import EventFlowSection from "@/components/EventFlowSection";
 import Footer from "@/components/Footer";
 import CountdownTimer from "@/components/CountdownTimer";
-import { Clock, Users, Trophy, Zap, Lightbulb, Handshake, Calendar, CheckCircle, Send, Star, Compass } from "lucide-react";
+import { Clock, Users, Trophy, Zap, Lightbulb, Handshake, Calendar, CheckCircle, Send, Star, Compass, FileText } from "lucide-react";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -167,30 +167,31 @@ const Index = () => {
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: "easeInOut" }}
-              className="absolute top-6 left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-primary/30 via-primary to-primary/30 origin-left z-0"
+              className="absolute top-6 left-[8%] right-[8%] h-[2px] bg-gradient-to-r from-primary/30 via-primary to-primary/30 origin-left z-0"
             />
 
-            <div className="grid grid-cols-4 gap-4 relative z-10">
+            <div className="grid grid-cols-5 gap-3 relative z-10">
               {[
-                { icon: Calendar,    date: "11 OCT", title: "Registration & PPT Deadline",            desc: "Sign up and submit your solution approach" },
-                { icon: Send,        date: "14 OCT", title: "Shortlist Announcement",                desc: "Announcement of shortlisted teams" },
-                { icon: Zap,         date: "18 OCT", title: "Payment Deadline for Shortlisted Teams", desc: "Confirm participation and payment" },
-                { icon: CheckCircle, date: "24 OCT", title: "Offline Hackathon",                     desc: "10 hours of building and hacking" },
+                { icon: Calendar,    date: "9 OCT",  title: "Registration Closes",                  desc: "9th October — 5:00 PM" },
+                { icon: FileText,    date: "10 OCT", title: "PPT Submission Deadline",              desc: "10th October — 1:00 PM" },
+                { icon: Send,        date: "14 OCT", title: "Shortlist Announcement",              desc: "Announcement of shortlisted teams" },
+                { icon: Zap,         date: "17 OCT", title: "Payment Deadline for Shortlisted Teams", desc: "17th October" },
+                { icon: CheckCircle, date: "24 OCT", title: "Offline Hackathon",                   desc: "10 hours of building and hacking" },
               ].map((item, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.2 + 0.3 }}
+                  transition={{ delay: i * 0.15 + 0.2 }}
                   className="flex flex-col items-center text-center group"
                 >
                   <div className="w-12 h-12 rounded-2xl bg-[#09120D] border border-primary/50 flex items-center justify-center shadow-[0_0_15px_rgba(124,255,79,0.3)] mb-4 group-hover:scale-110 transition-all duration-300">
                     <item.icon className="w-5 h-5 text-primary" />
                   </div>
                   <span className="text-primary font-mono text-xs font-bold tracking-widest uppercase mb-1">{item.date}</span>
-                  <h4 className="font-display text-sm font-bold text-foreground mb-2 leading-snug">{item.title}</h4>
-                  <p className="text-muted-foreground text-xs leading-relaxed max-w-[200px]">{item.desc}</p>
+                  <h4 className="font-display text-xs lg:text-sm font-bold text-foreground mb-1 leading-snug">{item.title}</h4>
+                  <p className="text-muted-foreground text-[11px] leading-relaxed max-w-[180px]">{item.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -199,10 +200,11 @@ const Index = () => {
           {/* Mobile Vertical Timeline */}
           <div className="md:hidden space-y-6 max-w-md mx-auto">
             {[
-              { icon: Calendar,    date: "11th October", title: "Registration & PPT Deadline",            desc: "Sign up and submit your solution approach" },
-              { icon: Send,        date: "14th October", title: "Shortlist Announcement",                desc: "Announcement of shortlisted teams" },
-              { icon: Zap,         date: "18th October", title: "Payment Deadline for Shortlisted Teams", desc: "Confirm participation and payment" },
-              { icon: CheckCircle, date: "24th October", title: "Offline Hackathon",                     desc: "10 hours of building and hacking" },
+              { icon: Calendar,    date: "9th October — 5:00 PM", title: "Registration Closes",                  desc: "Official Unstop registration closes" },
+              { icon: FileText,    date: "10th October — 1:00 PM", title: "PPT Submission Deadline",              desc: "Mandatory official PPT submission" },
+              { icon: Send,        date: "14th October",           title: "Shortlist Announcement",              desc: "Announcement of shortlisted teams" },
+              { icon: Zap,         date: "17th October",           title: "Payment Deadline for Shortlisted Teams", desc: "Confirm participation and payment" },
+              { icon: CheckCircle, date: "24th October",           title: "Offline Hackathon",                   desc: "10 hours of building and hacking" },
             ].map((item, i) => (
               <motion.div
                 key={i}

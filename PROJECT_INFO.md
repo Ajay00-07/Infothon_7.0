@@ -9,9 +9,10 @@ This document provides a comprehensive technical and functional overview of the 
 **Infothon 7.0** is the official web application for the 7th edition of **Infothon**, the flagship 10-hour national-level hackathon organized by the **Department of Information Science & Engineering (ISE)** at **Vidyavardhaka College of Engineering (VVCE)**, Mysuru, Karnataka, India.
 
 - **Event Timeline**:
-  - **11th October**: Registration & PPT Deadline
+  - **9th October — 5:00 PM**: Registration Closes
+  - **10th October — 1:00 PM**: PPT Submission Deadline
   - **14th October**: Shortlist Announcement
-  - **18th October**: Payment Deadline for Shortlisted Teams
+  - **17th October**: Payment Deadline for Shortlisted Teams
   - **24th October**: Offline Hackathon
 - **Prize Pool**: ₹40,000
 - **Venue**: VVCE Sports Complex, Mysuru
@@ -112,9 +113,10 @@ The application uses **React Router DOM v6** for client-side routing. Below are 
 - **Hero 3D Scene (`HeroScene.tsx`)**: Interactive 3D cube displaying `7.0`.
 - **Event Overview**: 10-hour hackathon highlights, open participation criteria, ₹40,000 prize pool.
 - **Event Timeline**:
-  - **11th October**: Registration & PPT Deadline
+  - **9th October — 5:00 PM**: Registration Closes
+  - **10th October — 1:00 PM**: PPT Submission Deadline
   - **14th October**: Shortlist Announcement
-  - **18th October**: Payment Deadline for Shortlisted Teams
+  - **17th October**: Payment Deadline for Shortlisted Teams
   - **24th October**: Offline Hackathon
 - **About Institutions**: Highlight cards for **Vidyavardhaka College of Engineering (VVCE)** and **Department of Information Science & Engineering (ISE)**.
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Clock, AlertCircle } from "lucide-react";
 
-// Target deadline: 11 October 2026, 11:59 PM IST (Asia/Kolkata = UTC+5:30)
-const TARGET_DEADLINE_ISO = "2026-10-11T23:59:00+05:30";
+// Target deadline: 10 October 2026, 1:00 PM IST (Asia/Kolkata = UTC+5:30)
+const TARGET_DEADLINE_ISO = "2026-10-10T13:00:00+05:30";
 const TARGET_DEADLINE = new Date(TARGET_DEADLINE_ISO).getTime();
 
 export interface TimeLeft {
@@ -53,10 +53,10 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ className = "" }) => {
         <div className="bg-[#050907]/80 border border-red-500/40 backdrop-blur-md rounded-xl p-3.5 sm:p-4 text-center shadow-[0_0_20px_rgba(239,68,68,0.18)]">
           <div className="inline-flex items-center justify-center gap-2 text-red-400 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider">
             <AlertCircle className="w-4 h-4 animate-pulse flex-shrink-0" />
-            <span>Submission Deadline Closed</span>
+            <span>SUBMISSION DEADLINE CLOSED</span>
           </div>
           <p className="text-[11px] text-muted-foreground mt-1 font-mono">
-            Submission Deadline was 11 October 2026, 11:59 PM IST
+            PPT Submission Deadline was 10 October 2026, 1:00 PM IST
           </p>
         </div>
       </div>
@@ -77,10 +77,13 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ className = "" }) => {
         <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-2/3 h-8 bg-primary/15 blur-lg pointer-events-none rounded-full" />
         
         {/* Header Label */}
-        <div className="flex items-center justify-center gap-1.5 mb-2.5 text-center">
+        <div className="flex items-center justify-center gap-1.5 mb-2.5 text-center flex-wrap">
           <Clock className="w-3.5 h-3.5 text-primary animate-pulse flex-shrink-0" />
-          <span className="font-mono text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-primary/90">
-            Submission Deadline — 11 October 2026, 11:59 PM IST
+          <span className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider text-primary">
+            PPT SUBMISSION DEADLINE
+          </span>
+          <span className="font-mono text-[10px] sm:text-xs text-muted-foreground font-medium">
+            • 10 October 2026 • 1:00 PM
           </span>
         </div>
 
