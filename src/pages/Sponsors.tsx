@@ -92,10 +92,10 @@ ${companyName.trim() || "[Name]"}`;
         <div className="mb-24">
           <SectionHeading title="Our Sponsors & Partners" subtitle="Proudly supported by" />
           <motion.div {...stagger} className="flex justify-center items-center">
-            <div className="rounded-3xl overflow-hidden border border-primary/40 hover:border-primary hover:shadow-[0_0_35px_rgba(124,255,79,0.3)] transition-all duration-500 flex items-center justify-center bg-white/95 p-4 max-w-xl mx-auto">
+            <div className="rounded-3xl overflow-hidden border border-primary/40 hover:border-primary hover:shadow-[0_0_35px_rgba(124,255,79,0.3)] transition-all duration-500 flex items-center justify-center bg-white/95 p-4 max-w-2xl mx-auto">
               <img
-                src="/sponsors.jpg"
-                alt="Infothon 7.0 Sponsors - ISTE & IEI"
+                src="/sponsors_infothon_7.0.png"
+                alt="Infothon 7.0 Sponsors — ISTE, Learnyst, Unstop, GRS Fantasy Park"
                 className="w-full object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
               />
             </div>

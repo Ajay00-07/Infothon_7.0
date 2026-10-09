@@ -48,7 +48,7 @@ Infothon_7.0/
 ├── public/                     # Static assets (Logos, gallery images, sponsors graphic)
 │   ├── 23.png                  # ISE Department Logo
 │   ├── 34.png                  # VVCE Institution Logo
-│   ├── 677.png                 # Sponsors Banner Graphic
+│   ├── sponsors_infothon_7.0.png # Sponsors Banner Graphic
 │   └── gallery/                # Gallery photos from previous Infothon editions
 ├── src/
 │   ├── components/             # Reusable UI & Layout Components

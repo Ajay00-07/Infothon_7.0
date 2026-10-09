@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/SectionHeading";
-import { Lock, Sparkles, Activity } from "lucide-react";
+import { Lock, Sparkles, Activity, AlertTriangle } from "lucide-react";
 
 const flowStages = [
   { step: "01", label: "PHASE 01", status: "STAGE LOCKED" },
@@ -193,6 +193,23 @@ const EventFlowSection = () => {
           <p className="text-muted-foreground text-xs md:text-sm leading-relaxed font-body">
             Stay tuned! Detailed timeline stages, mentoring schedules, and presentation rounds will be updated here prior to the event.
           </p>
+        </motion.div>
+
+        {/* Accommodation Notice */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.9, duration: 0.5 }}
+          className="mt-6 md:mt-8 flex justify-center px-4"
+        >
+          <div className="inline-flex items-start sm:items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3 rounded-xl bg-amber-500/[0.06] border border-amber-500/25 backdrop-blur-sm max-w-xl text-left sm:text-center">
+            <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5 sm:mt-0" />
+            <p className="text-xs sm:text-sm text-muted-foreground/85 font-body leading-relaxed">
+              <span className="font-semibold text-amber-400/95 tracking-wide">ACCOMMODATION NOTICE:</span>{" "}
+              Accommodation will not be provided by the organizers. Participants are kindly requested to make their own accommodation arrangements, if required.
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>
