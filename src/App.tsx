@@ -18,6 +18,7 @@ const Contact = lazy(() => import("./pages/Contact"));
 const Register = lazy(() => import("./pages/Register"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Results = lazy(() => import("./pages/Results"));
+const ShortlistedTeams = lazy(() => import("./pages/ShortlistedTeams"));
 const Contributors = lazy(() => import("./pages/Contributors"));
 
 const queryClient = new QueryClient();
@@ -79,7 +80,9 @@ const AnimatedRoutes = () => {
             <Route path="/sponsors" element={<Sponsors />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/results" element={<Results />} />
+            <Route path="/registration-closed" element={<Register />} />
+            <Route path="/shortlisted-teams" element={<ShortlistedTeams />} />
+            <Route path="/results" element={<ShortlistedTeams />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

@@ -2,7 +2,6 @@ import { useState, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionHeading from "@/components/SectionHeading";
 import Footer from "@/components/Footer";
-import CountdownTimer from "@/components/CountdownTimer";
 import { Button } from "@/components/ui/button";
 import {
   Bot,
@@ -29,7 +28,8 @@ import {
   CheckCircle2,
   AlertTriangle,
   Loader2,
-  FileText
+  FileText,
+  Bell
 } from "lucide-react";
 
 export interface ProblemStatement {
@@ -782,10 +782,43 @@ const Problems = () => {
           subtitle="Explore the complete problem statement repository across Agentic AI and Sustainable Development Goals"
         />
 
-        {/* Live Submission Countdown Timer */}
-        <div className="mb-10">
-          <CountdownTimer />
-        </div>
+        {/* Registration & PPT Submission Closed Notice */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-10 p-5 md:p-6 rounded-2xl bg-[#211D14]/90 border border-[#8F7136]/50 backdrop-blur-md shadow-[0_4px_24px_rgba(214,168,79,0.08)] relative overflow-hidden"
+        >
+          {/* Subtle Accent Glow */}
+          <div className="absolute top-0 right-0 w-64 h-24 bg-[#D6A84F]/5 blur-3xl pointer-events-none rounded-full" />
+
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 md:gap-5 text-center sm:text-left relative z-10">
+            <div className="w-12 h-12 rounded-xl bg-[#D6A84F]/10 border border-[#8F7136]/50 flex items-center justify-center text-[#D6A84F] flex-shrink-0 shadow-[0_0_15px_rgba(214,168,79,0.12)]">
+              <Bell className="w-6 h-6 text-[#D6A84F]" />
+            </div>
+
+            <div className="space-y-1.5 flex-1">
+              <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-[#D6A84F]/10 border border-[#8F7136]/40 mb-0.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D6A84F]" />
+                <span className="text-[10px] md:text-xs font-mono font-bold tracking-widest text-[#D6A84F] uppercase">
+                  NOTICE
+                </span>
+              </div>
+
+              <h3 className="font-display font-extrabold text-base md:text-lg text-[#E7C779] tracking-wide">
+                REGISTRATION & PPT SUBMISSION CLOSED
+              </h3>
+
+              <p className="text-[#E5E1D8]/90 text-xs md:text-sm leading-relaxed">
+                Registration and PPT submissions for Infothon 7.0 are now closed. Thank you to everyone who participated and submitted their ideas.
+              </p>
+
+              <p className="text-[#D6A84F] text-xs md:text-sm font-medium pt-0.5">
+                We appreciate your enthusiasm and effort in contributing to Infothon 7.0.
+              </p>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Action Header & Mandatory PPT Template Download Section */}
         <div className="flex flex-col gap-6 mb-10 bg-card/60 p-4 md:p-6 rounded-2xl border border-primary/20 backdrop-blur-md">

@@ -5,7 +5,6 @@ import HeroScene from "@/components/HeroScene";
 import SectionHeading from "@/components/SectionHeading";
 import EventFlowSection from "@/components/EventFlowSection";
 import Footer from "@/components/Footer";
-import CountdownTimer from "@/components/CountdownTimer";
 import { Clock, Users, Trophy, Zap, Lightbulb, Handshake, Calendar, CheckCircle, Send, Star, Compass, FileText } from "lucide-react";
 
 const fadeUp = {
@@ -95,13 +94,9 @@ const Index = () => {
               asChild
               className="h-14 px-10 rounded-2xl bg-[#050907]/70 backdrop-blur-md border border-primary/40 text-primary font-display font-extrabold text-sm md:text-base tracking-wider uppercase shadow-[0_0_24px_rgba(124,255,79,0.25)] hover:border-primary hover:bg-[#050907]/90 hover:-translate-y-1 hover:shadow-[0_0_36px_rgba(124,255,79,0.5)] active:scale-95 transition-all duration-300"
             >
-              <a
-                href="https://unstop.com/o/aMWPD3T?lb=oDUR4wu8&utm_medium=Share&utm_source=infotise5672&utm_campaign=Online_coding_challenge"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link to="/register">
                 Register Now
-              </a>
+              </Link>
             </Button>
             <Button
               size="lg"
@@ -112,14 +107,22 @@ const Index = () => {
             </Button>
           </motion.div>
 
-          {/* Submission Deadline Countdown Timer */}
+          {/* Shortlisted Teams Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0, duration: 0.6 }}
-            className="mt-6"
+            className="mt-5 flex justify-center items-center"
           >
-            <CountdownTimer />
+            <Button
+              size="lg"
+              asChild
+              className="h-12 px-8 rounded-2xl bg-[#050907]/60 backdrop-blur-md border border-primary/30 text-foreground/90 font-display font-bold text-xs md:text-sm tracking-wider uppercase hover:border-primary/70 hover:text-primary hover:bg-[#050907]/80 hover:-translate-y-1 hover:shadow-[0_0_24px_rgba(124,255,79,0.3)] active:scale-95 transition-all duration-300"
+            >
+              <Link to="/shortlisted-teams">
+                SHORTLISTED TEAMS
+              </Link>
+            </Button>
           </motion.div>
         </div>
       </section>
