@@ -117,7 +117,7 @@ const Index = () => {
             <Button
               size="lg"
               asChild
-              className="h-12 px-8 rounded-2xl bg-[#050907]/60 backdrop-blur-md border border-primary/30 text-foreground/90 font-display font-bold text-xs md:text-sm tracking-wider uppercase hover:border-primary/70 hover:text-primary hover:bg-[#050907]/80 hover:-translate-y-1 hover:shadow-[0_0_24px_rgba(124,255,79,0.3)] active:scale-95 transition-all duration-300"
+              className="h-14 px-10 rounded-2xl bg-[#050907]/70 backdrop-blur-md border border-primary/40 text-primary font-display font-extrabold text-sm md:text-base tracking-wider uppercase shadow-[0_0_24px_rgba(124,255,79,0.25)] hover:border-primary hover:bg-[#050907]/90 hover:-translate-y-1 hover:shadow-[0_0_36px_rgba(124,255,79,0.5)] active:scale-95 transition-all duration-300"
             >
               <Link to="/shortlisted-teams">
                 SHORTLISTED TEAMS

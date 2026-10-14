@@ -82,6 +82,8 @@ const AnimatedRoutes = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/registration-closed" element={<Register />} />
             <Route path="/shortlisted-teams" element={<ShortlistedTeams />} />
+            <Route path="/shortlisted-teams/agentic-ai" element={<ShortlistedTeams initialCategory="agentic-ai" />} />
+            <Route path="/shortlisted-teams/sdg" element={<ShortlistedTeams initialCategory="sdg" />} />
             <Route path="/results" element={<ShortlistedTeams />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
