@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion, type Transition, type Variants } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import BackgroundEffects from "@/components/BackgroundEffects";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -33,13 +33,13 @@ const AnimatedRoutes = () => {
   const location = useLocation();
   const shouldReduceMotion = useReducedMotion();
 
-  const pageVariants = {
+  const pageVariants: Variants = {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
     exit: { opacity: 0 },
   };
 
-  const pageTransition = {
+  const pageTransition: Transition = {
     duration: shouldReduceMotion ? 0.01 : 0.35,
     ease: "easeInOut",
   };
