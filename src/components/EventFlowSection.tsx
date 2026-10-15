@@ -3,9 +3,10 @@ import SectionHeading from "@/components/SectionHeading";
 import {
   UserCheck,
   Sparkles,
-  Coffee,
+  Zap,
   Target,
   Utensils,
+  Coffee,
   Award,
   Clock,
   AlertTriangle,
@@ -36,10 +37,10 @@ const eventFlowData: EventFlowItem[] = [
   },
   {
     step: "03",
-    title: "SNACKS BREAK",
-    time: "10:45 AM – 11:00 AM",
-    icon: Coffee,
-    tag: "REFRESHMENT",
+    title: "HACKATHON BEGINS",
+    time: "9:00 AM",
+    icon: Zap,
+    tag: "KICKOFF",
   },
   {
     step: "04",
@@ -111,33 +112,36 @@ const EventFlowSection = () => {
 
         {/* DESKTOP PIPELINE FLOW (Horizontal) */}
         <div className="hidden lg:block relative my-16 px-2">
-          {/* Base Connecting Energy Line */}
-          <div className="absolute top-6 left-[7.14%] right-[7.14%] -translate-y-1/2 h-[2px] bg-primary/20 z-0" />
+          {/* Connector Line Layer (Behind Icons) */}
+          <div className="absolute top-6 left-0 right-0 -translate-y-1/2 pointer-events-none z-0">
+            {/* Base Connecting Energy Line */}
+            <div className="absolute top-0 left-[7.14%] right-[7.14%] h-[2px] bg-primary/20" />
 
-          {/* Animated Drawing Connecting Energy Line */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
-            className="absolute top-6 left-[7.14%] right-[7.14%] -translate-y-1/2 h-[2px] bg-gradient-to-r from-primary/30 via-primary to-primary/30 origin-left z-0 shadow-[0_0_12px_#7CFF4F]"
-          />
+            {/* Animated Drawing Connecting Energy Line */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+              className="absolute top-0 left-[7.14%] right-[7.14%] h-[2px] bg-gradient-to-r from-primary/30 via-primary to-primary/30 origin-left shadow-[0_0_12px_#7CFF4F]"
+            />
 
-          {/* Traveling Energy Pulse Particle */}
-          <motion.div
-            animate={{
-              left: ["7.14%", "92.86%"],
-              opacity: [0, 1, 1, 0],
-            }}
-            transition={{
-              duration: 3.8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute top-6 -translate-y-1/2 w-3.5 h-3.5 -ml-[7px] rounded-full bg-[#7CFF4F] shadow-[0_0_16px_#7CFF4F] z-10 pointer-events-none"
-          >
-            <div className="w-full h-full rounded-full bg-white animate-ping opacity-75" />
-          </motion.div>
+            {/* Traveling Energy Pulse Particle */}
+            <motion.div
+              animate={{
+                left: ["7.14%", "92.86%"],
+                opacity: [0, 1, 1, 0],
+              }}
+              transition={{
+                duration: 3.8,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute -top-[5px] w-3.5 h-3.5 -ml-[7px] rounded-full bg-[#7CFF4F] shadow-[0_0_16px_#7CFF4F]"
+            >
+              <div className="w-full h-full rounded-full bg-white animate-ping opacity-75" />
+            </motion.div>
+          </div>
 
           {/* 7 Pipeline Stage Cards */}
           <div className="grid grid-cols-7 gap-2.5 xl:gap-3.5 relative z-10">
@@ -148,15 +152,16 @@ const EventFlowSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.12 + 0.2, duration: 0.5 }}
-                className="flex flex-col items-center group"
+                className="flex flex-col items-center group relative z-10"
               >
-                {/* Glowing Pipeline Node */}
+                {/* Timeline Icon Node Container (Above Connector with Opaque Background) */}
                 <motion.div
                   whileHover={{ scale: 1.1 }}
-                  className="w-12 h-12 rounded-2xl bg-[#050907] border border-primary/50 flex items-center justify-center shadow-[0_0_20px_rgba(124,255,79,0.25)] mb-5 relative group-hover:border-primary group-hover:shadow-[0_0_30px_rgba(124,255,79,0.5)] transition-all duration-300 z-10"
+                  className="w-12 h-12 rounded-2xl bg-[#050907] border border-primary/50 flex items-center justify-center shadow-[0_0_20px_rgba(124,255,79,0.25)] mb-5 relative z-20 group-hover:border-primary group-hover:shadow-[0_0_30px_rgba(124,255,79,0.5)] transition-all duration-300"
+                  style={{ backgroundColor: "#050907" }}
                 >
-                  <event.icon className="w-5 h-5 text-primary group-hover:scale-110 transition-transform duration-300" />
-                  <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-primary/40 border border-primary/60" />
+                  <event.icon className="w-5 h-5 text-primary group-hover:scale-110 transition-transform duration-300 relative z-10" />
+                  <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-primary/40 border border-primary/60 z-20" />
                 </motion.div>
 
                 {/* Stage Glassmorphism Card */}
@@ -184,33 +189,36 @@ const EventFlowSection = () => {
 
         {/* MOBILE & TABLET PIPELINE FLOW (Vertical) */}
         <div className="lg:hidden relative my-12 max-w-xl mx-auto px-4 sm:px-6">
-          {/* Base Vertical Connecting Line */}
-          <div className="absolute top-6 bottom-6 left-[38px] sm:left-[48px] -translate-x-1/2 w-[2px] bg-primary/20 z-0" />
+          {/* Connector Line Layer (Behind Icons) */}
+          <div className="absolute top-6 bottom-6 left-[38px] sm:left-[48px] -translate-x-1/2 w-[2px] pointer-events-none z-0">
+            {/* Base Vertical Connecting Line */}
+            <div className="absolute inset-0 bg-primary/20" />
 
-          {/* Animated Vertical Connecting Line */}
-          <motion.div
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
-            className="absolute top-6 bottom-6 left-[38px] sm:left-[48px] -translate-x-1/2 w-[2px] bg-gradient-to-b from-primary/30 via-primary to-primary/30 origin-top z-0 shadow-[0_0_10px_#7CFF4F]"
-          />
+            {/* Animated Vertical Connecting Line */}
+            <motion.div
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+              className="absolute inset-0 bg-gradient-to-b from-primary/30 via-primary to-primary/30 origin-top shadow-[0_0_10px_#7CFF4F]"
+            />
 
-          {/* Traveling Vertical Energy Pulse */}
-          <motion.div
-            animate={{
-              top: ["0%", "100%"],
-              opacity: [0, 1, 1, 0],
-            }}
-            transition={{
-              duration: 4.0,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute left-[38px] sm:left-[48px] -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-[#7CFF4F] shadow-[0_0_14px_#7CFF4F] z-10 pointer-events-none"
-          >
-            <div className="w-full h-full rounded-full bg-white animate-ping opacity-75" />
-          </motion.div>
+            {/* Traveling Vertical Energy Pulse */}
+            <motion.div
+              animate={{
+                top: ["0%", "100%"],
+                opacity: [0, 1, 1, 0],
+              }}
+              transition={{
+                duration: 4.0,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-[#7CFF4F] shadow-[0_0_14px_#7CFF4F]"
+            >
+              <div className="w-full h-full rounded-full bg-white animate-ping opacity-75" />
+            </motion.div>
+          </div>
 
           {/* Vertical Pipeline Items */}
           <div className="space-y-6 sm:space-y-7 relative z-10">
@@ -221,11 +229,14 @@ const EventFlowSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="flex items-start gap-4 sm:gap-5 group"
+                className="flex items-start gap-4 sm:gap-5 group relative z-10"
               >
-                {/* Node Dot */}
-                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#050907] border border-primary/50 flex items-center justify-center flex-shrink-0 relative z-10 shadow-[0_0_15px_rgba(124,255,79,0.25)] group-hover:border-primary group-hover:shadow-[0_0_25px_rgba(124,255,79,0.45)] transition-all duration-300">
-                  <event.icon className="w-5 h-5 text-primary" />
+                {/* Timeline Icon Node Container (Above Connector with Opaque Background) */}
+                <div
+                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#050907] border border-primary/50 flex items-center justify-center flex-shrink-0 relative z-20 shadow-[0_0_15px_rgba(124,255,79,0.25)] group-hover:border-primary group-hover:shadow-[0_0_25px_rgba(124,255,79,0.45)] transition-all duration-300"
+                  style={{ backgroundColor: "#050907" }}
+                >
+                  <event.icon className="w-5 h-5 text-primary relative z-10" />
                 </div>
 
                 {/* Glassmorphism Card */}
@@ -251,20 +262,48 @@ const EventFlowSection = () => {
           </div>
         </div>
 
-        {/* Accommodation Notice */}
+        {/* Combined Participant Notice Container */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.6, duration: 0.5 }}
-          className="mt-10 md:mt-14 flex justify-center px-4"
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="mt-12 md:mt-16 flex justify-center px-4"
         >
-          <div className="inline-flex items-start sm:items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 rounded-xl bg-amber-500/[0.06] border border-amber-500/25 backdrop-blur-sm max-w-2xl text-left sm:text-center">
-            <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5 sm:mt-0" />
-            <p className="text-xs sm:text-sm text-muted-foreground/85 font-body leading-relaxed">
-              <span className="font-semibold text-amber-400/95 tracking-wide">ACCOMMODATION NOTICE:</span>{" "}
-              Please note: Accommodation will not be provided by the organizers. Participants are kindly requested to make their own accommodation arrangements, if required.
-            </p>
+          <div className="w-full max-w-3xl rounded-xl bg-amber-500/[0.06] border border-amber-500/25 backdrop-blur-sm p-4 sm:p-5 md:p-6 shadow-[0_0_20px_rgba(245,158,11,0.05)] text-left">
+            {/* Header */}
+            <div className="flex items-center gap-2 mb-3.5 pb-2.5 border-b border-amber-500/15">
+              <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0" />
+              <h4 className="font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-amber-400">
+                PARTICIPANT NOTICE
+              </h4>
+            </div>
+
+            {/* Sections */}
+            <div className="space-y-3.5 text-xs sm:text-sm font-body leading-relaxed">
+              {/* Section 1: ACCOMMODATION */}
+              <div>
+                <span className="font-mono text-[11px] sm:text-xs font-semibold text-amber-400/95 tracking-wide uppercase block mb-1">
+                  ACCOMMODATION
+                </span>
+                <p className="text-muted-foreground/90 leading-relaxed">
+                  Accommodation will not be provided by the organizers. Participants are kindly requested to make their own accommodation arrangements, if required.
+                </p>
+              </div>
+
+              {/* Subtle Thin Divider */}
+              <div className="border-t border-amber-500/15" />
+
+              {/* Section 2: REGISTRATION & ARRIVAL */}
+              <div>
+                <span className="font-mono text-[11px] sm:text-xs font-semibold text-amber-400/95 tracking-wide uppercase block mb-1">
+                  REGISTRATION & ARRIVAL
+                </span>
+                <p className="text-muted-foreground/90 leading-relaxed">
+                  All teams are kindly requested to arrive on time and complete registration within the designated registration window. Late-arriving teams may not be registered or permitted to participate in the hackathon. We appreciate your understanding and cooperation.
+                </p>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
