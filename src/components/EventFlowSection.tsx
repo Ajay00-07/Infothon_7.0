@@ -30,17 +30,17 @@ const eventFlowData: EventFlowItem[] = [
   },
   {
     step: "02",
+    title: "HACKATHON BEGINS",
+    time: "8:30 AM",
+    icon: Zap,
+    tag: "KICKOFF",
+  },
+  {
+    step: "03",
     title: "INAUGURATION",
     time: "9:30 AM – 10:00 AM",
     icon: Sparkles,
     tag: "CEREMONY",
-  },
-  {
-    step: "03",
-    title: "HACKATHON BEGINS",
-    time: "9:00 AM",
-    icon: Zap,
-    tag: "KICKOFF",
   },
   {
     step: "04",
@@ -111,7 +111,7 @@ const EventFlowSection = () => {
         </div>
 
         {/* DESKTOP PIPELINE FLOW (Horizontal) */}
-        <div className="hidden lg:block relative my-16 px-2">
+        <div className="hidden lg:block relative mt-16 mb-10 px-2">
           {/* Connector Line Layer (Behind Icons) */}
           <div className="absolute top-6 left-0 right-0 -translate-y-1/2 pointer-events-none z-0">
             {/* Base Connecting Energy Line */}
@@ -188,7 +188,7 @@ const EventFlowSection = () => {
         </div>
 
         {/* MOBILE & TABLET PIPELINE FLOW (Vertical) */}
-        <div className="lg:hidden relative my-12 max-w-xl mx-auto px-4 sm:px-6">
+        <div className="lg:hidden relative mt-12 mb-8 max-w-xl mx-auto px-4 sm:px-6">
           {/* Connector Line Layer (Behind Icons) */}
           <div className="absolute top-6 bottom-6 left-[38px] sm:left-[48px] -translate-x-1/2 w-[2px] pointer-events-none z-0">
             {/* Base Vertical Connecting Line */}
@@ -262,13 +262,21 @@ const EventFlowSection = () => {
           </div>
         </div>
 
+        {/* Dinner Announcement */}
+        <div className="flex items-center justify-center gap-2.5 px-4 text-center">
+          <span className="w-2 h-2 rounded-full bg-[#7CFF4F] shadow-[0_0_8px_#7CFF4F] flex-shrink-0" />
+          <span className="text-white text-xs sm:text-sm md:text-base font-body font-medium tracking-wide">
+            Dinner will be provided to all participants.
+          </span>
+        </div>
+
         {/* Combined Participant Notice Container */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="mt-12 md:mt-16 flex justify-center px-4"
+          className="mt-10 md:mt-12 flex justify-center px-4"
         >
           <div className="w-full max-w-3xl rounded-xl bg-amber-500/[0.06] border border-amber-500/25 backdrop-blur-sm p-4 sm:p-5 md:p-6 shadow-[0_0_20px_rgba(245,158,11,0.05)] text-left">
             {/* Header */}
