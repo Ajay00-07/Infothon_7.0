@@ -695,7 +695,7 @@ const HeroScene = () => {
                   {/* Minimal Futuristic Separator Line */}
                   <div className="w-10 h-[1.5px] bg-gradient-to-r from-transparent via-primary/50 to-transparent my-2" />
 
-                  {/* Futuristic Digital Status Indicator: ● ONLINE */}
+                  {/* Futuristic Digital Status Indicator: ● OFFLINE */}
                   <div className="flex items-center justify-center gap-1.5">
                     {/* Pulsing Status Dot */}
                     <div
@@ -703,9 +703,9 @@ const HeroScene = () => {
                       className="w-1.5 h-1.5 rounded-full bg-[#7CFF4F] shadow-[0_0_6px_#7CFF4F]"
                     />
 
-                    {/* Clean Geometric "ONLINE" Label */}
+                    {/* Clean Geometric "OFFLINE" Label */}
                     <span className="font-mono text-[9px] md:text-[11px] font-light text-primary/75 tracking-[0.38em] uppercase pl-0.5">
-                      ONLINE
+                      OFFLINE
                     </span>
                   </div>
                 </div>
